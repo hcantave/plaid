@@ -9,7 +9,7 @@ use Illuminate\Support\Carbon;
 use InvalidArgumentException;
 
 #[CoversClass(\Abivia\Plaid\Entities\PaymentSchedule::class)]
-class PaymentScheduleTest extends TestCase
+final class PaymentScheduleTest extends TestCase
 {
 	public function test_get_properties(): void
 	{

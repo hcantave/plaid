@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Http;
 
 #[CoversClass(\Abivia\Plaid\PlaidRequestException::class)]
 #[UsesClass('\Abivia\Plaid\PlaidException')]
-class PlaidRequestExceptionTest extends TestCase
+final class PlaidRequestExceptionTest extends TestCase
 {
     public function testGettingCodeFromException(): void
     {

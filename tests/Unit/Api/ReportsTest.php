@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Http;
 #[CoversClass(\Abivia\Plaid\Api\AbstractResource::class)]
 #[CoversClass(\Abivia\Plaid\Api\Reports::class)]
 #[CoversClass(\Abivia\Plaid\PlaidRequestException::class)]
-class ReportsTest extends TestCase
+final class ReportsTest extends TestCase
 {
     public function testCreateAssetReport(): void
     {

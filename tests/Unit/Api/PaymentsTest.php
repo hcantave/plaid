@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Http;
 #[CoversClass(\Abivia\Plaid\Entities\RecipientAddress::class)]
 #[CoversClass(\Abivia\Plaid\Entities\PaymentSchedule::class)]
 #[CoversClass(\Abivia\Plaid\Entities\BacsAccount::class)]
-class PaymentsTest extends TestCase
+final class PaymentsTest extends TestCase
 {
     public function testCreatePayment(): void
     {

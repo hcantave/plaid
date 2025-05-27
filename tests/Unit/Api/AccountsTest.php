@@ -14,7 +14,7 @@ use Mockery\MockInterface;
 #[CoversClass(\Abivia\Plaid\Plaid::class)]
 #[CoversClass(\Abivia\Plaid\Api\AbstractResource::class)]
 #[CoversClass(\Abivia\Plaid\Api\Accounts::class)]
-class AccountsTest extends TestCase
+final class AccountsTest extends TestCase
 {
     public function testGetAccounts(): void
     {

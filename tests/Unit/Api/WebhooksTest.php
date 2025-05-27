@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Http;
 #[CoversClass(\Abivia\Plaid\Plaid::class)]
 #[CoversClass(\Abivia\Plaid\Api\AbstractResource::class)]
 #[CoversClass(\Abivia\Plaid\Api\Webhooks::class)]
-class WebhooksTest extends TestCase
+final class WebhooksTest extends TestCase
 {
     public function testGetVerificationKey(): void
     {

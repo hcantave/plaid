@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Http;
 #[CoversClass(\Abivia\Plaid\Api\AbstractResource::class)]
 #[CoversClass(\Abivia\Plaid\Api\BankTransfers::class)]
 #[CoversClass(\Abivia\Plaid\Entities\AccountHolder::class)]
-class BankTransfersTest extends TestCase
+final class BankTransfersTest extends TestCase
 {
     public function testCancelBankTransfer(): void
     {

@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Http;
 #[CoversClass(\Abivia\Plaid\Plaid::class)]
 #[CoversClass(\Abivia\Plaid\Api\AbstractResource::class)]
 #[CoversClass(\Abivia\Plaid\Api\Processors::class)]
-class ProcessorsTest extends TestCase
+final class ProcessorsTest extends TestCase
 {
     public function testCreateDwollaToken(): void
     {

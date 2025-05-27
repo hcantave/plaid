@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Http;
 #[CoversClass(\Abivia\Plaid\Api\tokens::class)]
 #[CoversClass(\Abivia\Plaid\Entities\AccountFilters::class)]
 #[CoversClass(\Abivia\Plaid\Entities\User::class)]
-class TokensTest extends TestCase
+final class TokensTest extends TestCase
 {
     public function testAccessToken(): void
     {

@@ -9,7 +9,7 @@ use \UnexpectedValueException;
 use ReflectionClass;
 
 #[CoversClass(\Abivia\Plaid\Plaid::class)]
-class PlaidClientTest extends TestCase
+final class PlaidClientTest extends TestCase
 {
 	public function testSettingInvalidEnvironment(): void
 	{

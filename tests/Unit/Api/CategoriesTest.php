@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Http;
 #[CoversClass(\Abivia\Plaid\Plaid::class)]
 #[CoversClass(\Abivia\Plaid\Api\AbstractResource::class)]
 #[CoversClass(\Abivia\Plaid\Api\Categories::class)]
-class CategoriesTest extends TestCase
+final class CategoriesTest extends TestCase
 {
     public function testGetIdentity(): void
     {

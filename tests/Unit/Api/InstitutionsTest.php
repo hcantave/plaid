@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Http;
 #[CoversClass(\Abivia\Plaid\Plaid::class)]
 #[CoversClass(\Abivia\Plaid\Api\AbstractResource::class)]
 #[CoversClass(\Abivia\Plaid\Api\Institutions::class)]
-class InstitutionsTest extends TestCase
+final class InstitutionsTest extends TestCase
 {
     public function testFindInstitution(): void
     {

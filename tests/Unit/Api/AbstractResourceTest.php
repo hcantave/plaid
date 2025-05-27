@@ -17,7 +17,7 @@ use UnexpectedValueException;
 #[CoversClass(\Abivia\Plaid\Api\AbstractResource::class)]
 #[CoversClass(\Abivia\Plaid\Api\Items::class)]
 #[CoversClass(\Abivia\Plaid\PlaidRequestException::class)]
-class AbstractResourceTest extends TestCase
+final class AbstractResourceTest extends TestCase
 {
     public function testInvalidJsonWhenParsingResponse(): void
     {

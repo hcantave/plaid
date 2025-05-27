@@ -6,7 +6,7 @@ use Abivia\Plaid\Entities\BacsAccount;
 use Abivia\Plaid\Tests\TestCase;
 
 #[CoversClass(\Abivia\Plaid\Entities\BacsAccount::class)]
-class BacsAccountTest extends TestCase
+final class BacsAccountTest extends TestCase
 {
 	public function testConstructorSetsAccountAndSortCode(): void
 	{

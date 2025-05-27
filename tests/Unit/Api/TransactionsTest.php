@@ -13,7 +13,7 @@ use Illuminate\Support\Carbon;
 #[CoversClass(\Abivia\Plaid\Plaid::class)]
 #[CoversClass(\Abivia\Plaid\Api\AbstractResource::class)]
 #[CoversClass(\Abivia\Plaid\Api\Transactions::class)]
-class TransactionsTest extends TestCase
+final class TransactionsTest extends TestCase
 {
     public function testGetTransactions(): void
     {

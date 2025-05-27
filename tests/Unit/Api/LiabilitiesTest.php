@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Http;
 #[CoversClass(\Abivia\Plaid\Plaid::class)]
 #[CoversClass(\Abivia\Plaid\Api\AbstractResource::class)]
 #[CoversClass(\Abivia\Plaid\Api\Liabilities::class)]
-class LiabilitiesTest extends TestCase
+final class LiabilitiesTest extends TestCase
 {
     public function testGetLiabilities(): void
     {

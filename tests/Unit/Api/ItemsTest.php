@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Http;
 #[CoversClass(\Abivia\Plaid\Plaid::class)]
 #[CoversClass(\Abivia\Plaid\Api\AbstractResource::class)]
 #[CoversClass(\Abivia\Plaid\Api\Items::class)]
-class ItemsTest extends TestCase
+final class ItemsTest extends TestCase
 {
     public function testCreatePublicToken(): void
     {

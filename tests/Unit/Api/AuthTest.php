@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Http;
 #[CoversClass(\Abivia\Plaid\Plaid::class)]
 #[CoversClass(\Abivia\Plaid\Api\AbstractResource::class)]
 #[CoversClass(\Abivia\Plaid\Api\Auth::class)]
-class AuthTest extends TestCase
+final class AuthTest extends TestCase
 {
     public function testGetAuth(): void
     {

@@ -8,7 +8,7 @@ use Abivia\Plaid\Tests\TestCase;
 
 
 #[CoversClass(\Abivia\Plaid\Entities\RecipientAddress::class)]
-class RecipientAddressTest extends TestCase
+final class RecipientAddressTest extends TestCase
 {
 	public function testToArrayWithSingleStreet(): void
 	{

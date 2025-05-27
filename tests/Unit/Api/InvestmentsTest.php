@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Http;
 #[CoversClass(\Abivia\Plaid\Plaid::class)]
 #[CoversClass(\Abivia\Plaid\Api\AbstractResource::class)]
 #[CoversClass(\Abivia\Plaid\Api\Investments::class)]
-class InvestmentsTest extends TestCase
+final class InvestmentsTest extends TestCase
 {
     public function testGetHoldings(): void
     {

@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Http;
 #[CoversClass(\Abivia\Plaid\Plaid::class)]
 #[CoversClass(\Abivia\Plaid\Api\AbstractResource::class)]
 #[CoversClass(\Abivia\Plaid\Api\Sandbox::class)]
-class SandboxTest extends TestCase
+final class SandboxTest extends TestCase
 {
     public function testCreatePublicToken(): void
     {

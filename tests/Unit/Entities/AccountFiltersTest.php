@@ -8,7 +8,7 @@ use Abivia\Plaid\Tests\TestCase;
 use ReflectionClass;
 
 #[CoversClass(\Abivia\Plaid\Entities\AccountFilters::class)]
-class AccountFiltersTest extends TestCase
+final class AccountFiltersTest extends TestCase
 {
     public function testConstructorSetsFilters(): void
     {
