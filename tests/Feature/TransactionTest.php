@@ -7,11 +7,11 @@ use Abivia\Plaid\PlaidRequestException;
 use Abivia\Plaid\Tests\TestCase;
 use Illuminate\Support\Carbon;
 
-class TransactionTest extends TestCase
+final class TransactionTest extends TestCase
 {
     const TD_CANADA = 'ins_42';
 
-    public function testGetTransactions()
+    public function testGetTransactions(): void
     {
         try {
             Plaid::environment('sandbox');

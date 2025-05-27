@@ -2,15 +2,14 @@
 
 namespace Abivia\Plaid\Tests\Unit\Entities;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use Abivia\Plaid\Entities\PaymentSchedule;
 use Abivia\Plaid\Tests\TestCase;
 use Illuminate\Support\Carbon;
 use InvalidArgumentException;
 
-/**
- * @covers \Abivia\Plaid\Entities\PaymentSchedule
- */
-class PaymentScheduleTest extends TestCase
+#[CoversClass(\Abivia\Plaid\Entities\PaymentSchedule::class)]
+final class PaymentScheduleTest extends TestCase
 {
 	public function test_get_properties(): void
 	{

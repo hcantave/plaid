@@ -2,14 +2,13 @@
 
 namespace Abivia\Plaid\Tests\Unit\Entities;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use Abivia\Plaid\Entities\AccountFilters;
 use Abivia\Plaid\Tests\TestCase;
 use ReflectionClass;
 
-/**
- * @covers \Abivia\Plaid\Entities\AccountFilters
- */
-class AccountFiltersTest extends TestCase
+#[CoversClass(\Abivia\Plaid\Entities\AccountFilters::class)]
+final class AccountFiltersTest extends TestCase
 {
     public function testConstructorSetsFilters(): void
     {

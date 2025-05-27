@@ -2,6 +2,7 @@
 
 namespace Abivia\Plaid\Tests\Unit\Api;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use Abivia\Plaid\Api\Payments;
 use Abivia\Plaid\Entities\BacsAccount;
 use Abivia\Plaid\Entities\PaymentSchedule;
@@ -13,15 +14,13 @@ use GuzzleHttp\Psr7\Response as PsrResponse;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 
-/**
- * @covers \Abivia\Plaid\Plaid
- * @covers \Abivia\Plaid\Api\AbstractResource
- * @covers \Abivia\Plaid\Api\Payments
- * @covers \Abivia\Plaid\Entities\RecipientAddress
- * @covers \Abivia\Plaid\Entities\PaymentSchedule
- * @covers \Abivia\Plaid\Entities\BacsAccount
- */
-class PaymentsTest extends TestCase
+#[CoversClass(\Abivia\Plaid\Plaid::class)]
+#[CoversClass(\Abivia\Plaid\Api\AbstractResource::class)]
+#[CoversClass(\Abivia\Plaid\Api\Payments::class)]
+#[CoversClass(\Abivia\Plaid\Entities\RecipientAddress::class)]
+#[CoversClass(\Abivia\Plaid\Entities\PaymentSchedule::class)]
+#[CoversClass(\Abivia\Plaid\Entities\BacsAccount::class)]
+final class PaymentsTest extends TestCase
 {
     public function testCreatePayment(): void
     {

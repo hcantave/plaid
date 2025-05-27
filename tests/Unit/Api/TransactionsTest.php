@@ -2,6 +2,7 @@
 
 namespace Abivia\Plaid\Tests\Unit\Api;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use Abivia\Plaid\Api\Transactions;
 use Abivia\Plaid\Tests\TestCase;
 use GuzzleHttp\Psr7\Response as PsrResponse;
@@ -9,12 +10,10 @@ use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Carbon;
 
-/**
- * @covers \Abivia\Plaid\Plaid
- * @covers \Abivia\Plaid\Api\AbstractResource
- * @covers \Abivia\Plaid\Api\Transactions
- */
-class TransactionsTest extends TestCase
+#[CoversClass(\Abivia\Plaid\Plaid::class)]
+#[CoversClass(\Abivia\Plaid\Api\AbstractResource::class)]
+#[CoversClass(\Abivia\Plaid\Api\Transactions::class)]
+final class TransactionsTest extends TestCase
 {
     public function testGetTransactions(): void
     {

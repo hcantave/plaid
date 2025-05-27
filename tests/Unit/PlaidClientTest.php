@@ -2,15 +2,14 @@
 
 namespace Abivia\Plaid\Tests\Unit;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use Abivia\Plaid\Plaid;
 use Abivia\Plaid\Tests\TestCase;
 use \UnexpectedValueException;
 use ReflectionClass;
 
-/**
- * @covers \Abivia\Plaid\Plaid
- */
-class PlaidClientTest extends TestCase
+#[CoversClass(\Abivia\Plaid\Plaid::class)]
+final class PlaidClientTest extends TestCase
 {
 	public function testSettingInvalidEnvironment(): void
 	{

@@ -2,6 +2,7 @@
 
 namespace Abivia\Plaid\Tests\Unit\Api;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use Abivia\Plaid\Api\Items;
 use Abivia\Plaid\Plaid;
 use Abivia\Plaid\Plaid as PlaidCore;
@@ -12,13 +13,11 @@ use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 use UnexpectedValueException;
 
-/**
- * @covers \Abivia\Plaid\Plaid
- * @covers \Abivia\Plaid\Api\AbstractResource
- * @covers \Abivia\Plaid\Api\Items
- * @covers \Abivia\Plaid\PlaidRequestException
- */
-class AbstractResourceTest extends TestCase
+#[CoversClass(\Abivia\Plaid\Plaid::class)]
+#[CoversClass(\Abivia\Plaid\Api\AbstractResource::class)]
+#[CoversClass(\Abivia\Plaid\Api\Items::class)]
+#[CoversClass(\Abivia\Plaid\PlaidRequestException::class)]
+final class AbstractResourceTest extends TestCase
 {
     public function testInvalidJsonWhenParsingResponse(): void
     {
