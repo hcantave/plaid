@@ -2,6 +2,7 @@
 
 namespace Abivia\Plaid\Tests\Unit\Api;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use Abivia\Plaid\Api\Sandbox;
 use Abivia\Plaid\Plaid as PlaidCore;
 use Abivia\Plaid\Tests\TestCase;
@@ -10,11 +11,9 @@ use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 
 
-/**
- * @covers \Abivia\Plaid\Plaid
- * @covers \Abivia\Plaid\Api\AbstractResource
- * @covers \Abivia\Plaid\Api\Sandbox
- */
+#[CoversClass(\Abivia\Plaid\Plaid::class)]
+#[CoversClass(\Abivia\Plaid\Api\AbstractResource::class)]
+#[CoversClass(\Abivia\Plaid\Api\Sandbox::class)]
 class SandboxTest extends TestCase
 {
     public function testCreatePublicToken(): void

@@ -2,6 +2,8 @@
 
 namespace Abivia\Plaid\Tests\Unit;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use Abivia\Plaid\PlaidRequestException;
 use Abivia\Plaid\Tests\TestCase;
 use Abivia\Plaid\Plaid as PlaidCore;
@@ -10,10 +12,8 @@ use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 
 
-/**
- * @covers \Abivia\Plaid\PlaidRequestException
- * @uses   \Abivia\Plaid\PlaidException
- */
+#[CoversClass(\Abivia\Plaid\PlaidRequestException::class)]
+#[UsesClass('\Abivia\Plaid\PlaidException')]
 class PlaidRequestExceptionTest extends TestCase
 {
     public function testGettingCodeFromException(): void

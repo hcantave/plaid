@@ -2,6 +2,7 @@
 
 namespace Abivia\Plaid\Tests\Unit\Api;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use Abivia\Plaid\Api\Items;
 use Abivia\Plaid\Plaid as PlaidCore;
 use Abivia\Plaid\Tests\TestCase;
@@ -9,11 +10,9 @@ use GuzzleHttp\Psr7\Response as PsrResponse;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 
-/**
- * @covers \Abivia\Plaid\Plaid
- * @covers \Abivia\Plaid\Api\AbstractResource
- * @covers \Abivia\Plaid\Api\Items
- */
+#[CoversClass(\Abivia\Plaid\Plaid::class)]
+#[CoversClass(\Abivia\Plaid\Api\AbstractResource::class)]
+#[CoversClass(\Abivia\Plaid\Api\Items::class)]
 class ItemsTest extends TestCase
 {
     public function testCreatePublicToken(): void

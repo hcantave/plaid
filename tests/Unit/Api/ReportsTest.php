@@ -2,6 +2,7 @@
 
 namespace Abivia\Plaid\Tests\Unit\Api;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use Abivia\Plaid\Api\Reports;
 use Abivia\Plaid\Plaid as PlaidCore;
 use Abivia\Plaid\PlaidRequestException;
@@ -10,12 +11,10 @@ use GuzzleHttp\Psr7\Response as PsrResponse;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 
-/**
- * @covers \Abivia\Plaid\Plaid
- * @covers \Abivia\Plaid\Api\AbstractResource
- * @covers \Abivia\Plaid\Api\Reports
- * @covers \Abivia\Plaid\PlaidRequestException
- */
+#[CoversClass(\Abivia\Plaid\Plaid::class)]
+#[CoversClass(\Abivia\Plaid\Api\AbstractResource::class)]
+#[CoversClass(\Abivia\Plaid\Api\Reports::class)]
+#[CoversClass(\Abivia\Plaid\PlaidRequestException::class)]
 class ReportsTest extends TestCase
 {
     public function testCreateAssetReport(): void

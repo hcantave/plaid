@@ -2,13 +2,12 @@
 
 namespace Abivia\Plaid\Tests\Unit\Entities;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use Abivia\Plaid\Entities\RecipientAddress;
 use Abivia\Plaid\Tests\TestCase;
 
 
-/**
- * @covers \Abivia\Plaid\Entities\RecipientAddress
- */
+#[CoversClass(\Abivia\Plaid\Entities\RecipientAddress::class)]
 class RecipientAddressTest extends TestCase
 {
 	public function testToArrayWithSingleStreet(): void

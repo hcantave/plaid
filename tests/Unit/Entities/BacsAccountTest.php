@@ -1,12 +1,11 @@
 <?php
 namespace Abivia\Plaid\Tests\Unit\Entities;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use Abivia\Plaid\Entities\BacsAccount;
 use Abivia\Plaid\Tests\TestCase;
 
-/**
- * @covers \Abivia\Plaid\Entities\BacsAccount
- */
+#[CoversClass(\Abivia\Plaid\Entities\BacsAccount::class)]
 class BacsAccountTest extends TestCase
 {
 	public function testConstructorSetsAccountAndSortCode(): void

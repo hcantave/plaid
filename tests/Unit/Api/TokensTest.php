@@ -2,6 +2,7 @@
 
 namespace Abivia\Plaid\Tests\Unit\Api;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use Abivia\Plaid\Api\Tokens;
 use Abivia\Plaid\Entities\AccountFilters;
 use Abivia\Plaid\Entities\User;
@@ -11,13 +12,11 @@ use GuzzleHttp\Psr7\Response as PsrResponse;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 
-/**
- * @covers \Abivia\Plaid\Plaid
- * @covers \Abivia\Plaid\Api\AbstractResource
- * @covers \Abivia\Plaid\Api\tokens
- * @covers \Abivia\Plaid\Entities\AccountFilters
- * @covers \Abivia\Plaid\Entities\User
- */
+#[CoversClass(\Abivia\Plaid\Plaid::class)]
+#[CoversClass(\Abivia\Plaid\Api\AbstractResource::class)]
+#[CoversClass(\Abivia\Plaid\Api\tokens::class)]
+#[CoversClass(\Abivia\Plaid\Entities\AccountFilters::class)]
+#[CoversClass(\Abivia\Plaid\Entities\User::class)]
 class TokensTest extends TestCase
 {
     public function testAccessToken(): void

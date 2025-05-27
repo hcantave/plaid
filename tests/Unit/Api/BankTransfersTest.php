@@ -2,6 +2,7 @@
 
 namespace Abivia\Plaid\Tests\Unit\Api;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use Abivia\Plaid\Api\BankTransfers;
 use Abivia\Plaid\Entities\AccountHolder;
 use Abivia\Plaid\Plaid as PlaidCore;
@@ -11,12 +12,10 @@ use GuzzleHttp\Psr7\Response as PsrResponse;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 
-/**
- * @covers \Abivia\Plaid\Plaid
- * @covers \Abivia\Plaid\Api\AbstractResource
- * @covers \Abivia\Plaid\Api\BankTransfers
- * @covers \Abivia\Plaid\Entities\AccountHolder
- */
+#[CoversClass(\Abivia\Plaid\Plaid::class)]
+#[CoversClass(\Abivia\Plaid\Api\AbstractResource::class)]
+#[CoversClass(\Abivia\Plaid\Api\BankTransfers::class)]
+#[CoversClass(\Abivia\Plaid\Entities\AccountHolder::class)]
 class BankTransfersTest extends TestCase
 {
     public function testCancelBankTransfer(): void
