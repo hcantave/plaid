@@ -3,5 +3,5 @@
 /.idea/
 /vendor/
 /src/Commands/PlaidExampleCommand.php
-/.phpunit.result.cache
+/.phpunit.cache
 /composer.lock
