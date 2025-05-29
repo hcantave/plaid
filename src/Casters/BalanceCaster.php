@@ -1,8 +1,8 @@
 <?php
 
-namespace CaashApp\Plaid\Casters;
+namespace Hcantave\Plaid\Casters;
 
-use CaashApp\Plaid\Entities\Balances;
+use Hcantave\Plaid\Entities\Balances;
 use Money\Currencies\ISOCurrencies;
 use Money\Currency;
 use Money\Money;

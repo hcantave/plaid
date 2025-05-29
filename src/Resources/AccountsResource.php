@@ -1,8 +1,8 @@
 <?php
 
-namespace CaashApp\Plaid\Resources;
+namespace Hcantave\Plaid\Resources;
 
-use CaashApp\Plaid\Entities\Account;
+use Hcantave\Plaid\Entities\Account;
 use Spatie\LaravelData\Attributes\DataCollectionOf;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\DataCollection;

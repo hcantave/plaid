@@ -1,12 +1,12 @@
 <?php
 
-namespace CaashApp\Plaid\Resources;
+namespace Hcantave\Plaid\Resources;
 
-use CaashApp\Plaid\Casters\AccountCollectionCaster;
-use CaashApp\Plaid\Casters\TransactionCollectionCaster;
-use CaashApp\Plaid\Entities\Account;
-use CaashApp\Plaid\Entities\Item;
-use CaashApp\Plaid\Entities\Transaction;
+use Hcantave\Plaid\Casters\AccountCollectionCaster;
+use Hcantave\Plaid\Casters\TransactionCollectionCaster;
+use Hcantave\Plaid\Entities\Account;
+use Hcantave\Plaid\Entities\Item;
+use Hcantave\Plaid\Entities\Transaction;
 use Illuminate\Support\Collection;
 use Spatie\DataTransferObject\Attributes\CastWith;
 use Spatie\LaravelData\Data;

@@ -1,8 +1,8 @@
 <?php
 
-namespace CaashApp\Plaid\Entities;
+namespace Hcantave\Plaid\Entities;
 
-use CaashApp\Plaid\Casters\DateTimeCaster;
+use Hcantave\Plaid\Casters\DateTimeCaster;
 use DateTime;
 use Spatie\LaravelData\Attributes\WithCast;
 use Spatie\LaravelData\Data;

@@ -1,8 +1,8 @@
 <?php
 
-namespace CaashApp\Plaid\Resources;
+namespace Hcantave\Plaid\Resources;
 
-use CaashApp\Plaid\Entities\Institution;
+use Hcantave\Plaid\Entities\Institution;
 use Spatie\LaravelData\Data;
 
 class InstitutionCollectionResource extends Data

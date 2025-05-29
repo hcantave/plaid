@@ -1,8 +1,8 @@
 <?php
 
-namespace CaashApp\Plaid\Casters;
+namespace Hcantave\Plaid\Casters;
 
-use CaashApp\Plaid\Entities\Transaction;
+use Hcantave\Plaid\Entities\Transaction;
 use Money\Currencies\ISOCurrencies;
 use Money\Currency;
 use Money\Money;
@@ -14,7 +14,7 @@ class TransactionCollectionCaster implements Cast
 {
     public function cast(DataProperty $property, mixed $value, array $properties): mixed
     {
-        return collect($value)->map(function ($transaction): \CaashApp\Plaid\Entities\Transaction {
+        return collect($value)->map(function ($transaction): \Hcantave\Plaid\Entities\Transaction {
             return Transaction::from(array_merge($transaction, [
                 'amount' => $this->parseMoney($transaction, 'amount'),
             ]));

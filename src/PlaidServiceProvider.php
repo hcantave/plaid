@@ -1,9 +1,12 @@
 <?php
 
-namespace CaashApp\Plaid;
+namespace Hcantave\Plaid;
 
-use CaashApp\Plaid\Client\Factory;
+use Hcantave\Plaid\Client\Factory;
 use Illuminate\Support\ServiceProvider;
+
+use Illuminate\Support\Facades\Config;
+use function config_path;
 
 class PlaidServiceProvider extends ServiceProvider
 {
@@ -11,10 +14,10 @@ class PlaidServiceProvider extends ServiceProvider
     {
         $this->app->bind('plaid', function ($app): Factory {
             return new Factory(
-                config('plaid.client'),
-                config('plaid.secret'),
-                config('plaid.env'),
-                config('app.name'),
+                Config::get('plaid.client'),
+                Config::get('plaid.secret'),
+                Config::get('plaid.env'),
+                Config::get('app.name'),
             );
         });
     }

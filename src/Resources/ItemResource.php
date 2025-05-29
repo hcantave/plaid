@@ -1,9 +1,9 @@
 <?php
 
-namespace CaashApp\Plaid\Resources;
+namespace Hcantave\Plaid\Resources;
 
-use CaashApp\Plaid\Entities\Item;
-use CaashApp\Plaid\Entities\PlaidStatus;
+use Hcantave\Plaid\Entities\Item;
+use Hcantave\Plaid\Entities\PlaidStatus;
 use Spatie\LaravelData\Data;
 
 class ItemResource extends Data

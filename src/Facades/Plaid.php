@@ -1,19 +1,19 @@
 <?php
 
-namespace CaashApp\Plaid\Facades;
+namespace Hcantave\Plaid\Facades;
 
-use CaashApp\Plaid\Resources\AccessTokenResource;
-use CaashApp\Plaid\Resources\AccountsResource;
-use CaashApp\Plaid\Resources\InstitutionCollectionResource;
-use CaashApp\Plaid\Resources\InstitutionResource;
-use CaashApp\Plaid\Resources\ItemRemoveResource;
-use CaashApp\Plaid\Resources\ItemResource;
-use CaashApp\Plaid\Resources\LinkTokenResource;
-use CaashApp\Plaid\Resources\NewAccessTokenResource;
-use CaashApp\Plaid\Resources\PublicTokenResource;
-use CaashApp\Plaid\Resources\ResetItemResource;
-use CaashApp\Plaid\Resources\TransactionsResource;
-use CaashApp\Plaid\Resources\WebhookFiredResource;
+use Hcantave\Plaid\Resources\AccessTokenResource;
+use Hcantave\Plaid\Resources\AccountsResource;
+use Hcantave\Plaid\Resources\InstitutionCollectionResource;
+use Hcantave\Plaid\Resources\InstitutionResource;
+use Hcantave\Plaid\Resources\ItemRemoveResource;
+use Hcantave\Plaid\Resources\ItemResource;
+use Hcantave\Plaid\Resources\LinkTokenResource;
+use Hcantave\Plaid\Resources\NewAccessTokenResource;
+use Hcantave\Plaid\Resources\PublicTokenResource;
+use Hcantave\Plaid\Resources\ResetItemResource;
+use Hcantave\Plaid\Resources\TransactionsResource;
+use Hcantave\Plaid\Resources\WebhookFiredResource;
 use DateTime;
 use Illuminate\Support\Facades\Facade;
 
@@ -35,7 +35,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static AccessTokenResource createTestItem(string $institution)
  * @method static TransactionsResource fetchTransactions(string $itemId, DateTime $startDate, DateTime $endDate);
  *
- * @see \CaashApp\Plaid\Client\Factory
+ * @see \Hcantave\Plaid\Client\Factory
  */
 class Plaid extends Facade
 {

@@ -18,18 +18,18 @@
     },
     "autoload": {
         "psr-4": {
-            "CaashApp\\Plaid\\": "src/"
+            "Hcantave\\Plaid\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "CaashApp\\Plaid\\Tests\\": "tests"
+            "Hcantave\\Plaid\\Tests\\": "tests"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "CaashApp\\Plaid\\PlaidServiceProvider"
+                "Hcantave\\Plaid\\PlaidServiceProvider"
             ]
         }
     },

@@ -1,6 +1,6 @@
 <?php
 
-namespace CaashApp\Plaid\Resources;
+namespace Hcantave\Plaid\Resources;
 
 use Spatie\LaravelData\Data;
 

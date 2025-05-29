@@ -1,6 +1,6 @@
 <?php
 
-namespace CaashApp\Plaid\Entities;
+namespace Hcantave\Plaid\Entities;
 
 use Carbon\Carbon;
 use Money\Money;

@@ -1,6 +1,6 @@
 <?php
 
-namespace CaashApp\Plaid\Casters;
+namespace Hcantave\Plaid\Casters;
 
 use DateTime;
 use Exception;
