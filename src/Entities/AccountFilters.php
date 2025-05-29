@@ -1,21 +1,15 @@
 <?php
-declare(strict_types=1);
 
-namespace Abivia\Plaid\Entities;
+namespace CaashApp\Plaid\Entities;
 
 class AccountFilters
 {
-    /**
-     * @var array<string,array<string,array<string>>> Filters to be applied.
-     */
-    protected array $filters = [];
-
     /**
      * AccountFilters constructor.
      *
      * @param array<string,array<string>> $filters
      */
-    public function __construct(array $filters = [])
+    public function __construct(protected array $filters = [])
     {
         foreach ($filters as $name => $subtypes) {
             $this->setFilter($name, $subtypes);
@@ -23,86 +17,104 @@ class AccountFilters
     }
 
     /**
-     * Set credit filters.
+     * Set filters for the given type.
      *
-     * @param array<string> $subtypes Any of all, identity, liabilities, transactions.
-     * @return AccountFilters
+     * @param string $type
+     * @param array<string> $subtypes
+     * @return void
      */
-    public function setCreditFilters(array $subtypes): self
+    protected function setFilter(string $type, array $subtypes): void
     {
-        $this->setFilter('credit', $subtypes);
+        if (empty($subtypes)) {
+            return;
+        }
 
-        return $this;
+        $this->filters[$type] = ['account_subtypes' => $subtypes];
     }
 
     /**
      * Set depository subtype filters.
      *
-     * @param array<string> $subtypes Any of all, assets, auth, identity, income, transactions.
-     * @return AccountFilters
+     * Possible subtypes are:
+     *	auth
+     *	transactions
+     *	identity
+     *	income
+     *	assets
+     *	all
+     *
+     * @param array<string> $subtypes
+     * @return void
      */
-    public function setDepositoryFilters(array $subtypes): self
+    public function setDepositoryFilters(array $subtypes): void
     {
         $this->setFilter('depository', $subtypes);
-
-        return $this;
     }
 
     /**
-     * Set filters for the given type.
+     * Set credit filters.
      *
-     * @param string $type
+     * Possible subtypes are:
+     *	transactions
+     *	identity
+     * 	liabilities
+     *	all
+     *
      * @param array<string> $subtypes
-     * @return AccountFilters
+     * @return void
      */
-    protected function setFilter(string $type, array $subtypes): self
+    public function setCreditFilters(array $subtypes): void
     {
-        if (empty($subtypes)) {
-            return $this;
-        }
-
-        $this->filters[$type] = ['account_subtypes' => $subtypes];
-
-        return $this;
+        $this->setFilter('credit', $subtypes);
     }
 
     /**
      * Set investment filters.
      *
-     * @param array<string> $subtypes Any of all, investment
-     * @return AccountFilters
+     * Possible subtypes are:
+     * 	investment
+     * 	all
+     *
+     * @param array<string> $subtypes
+     * @return void
      */
-    public function setInvestmentFilters(array $subtypes): self
+    public function setInvestmentFilters(array $subtypes): void
     {
         $this->setFilter('investment', $subtypes);
-
-        return $this;
     }
 
     /**
      * Set loan filters.
      *
-     * @param array<string> $subtypes Any of all, liabilities, transactions
-     * @return AccountFilters
+     * Possible values are:
+     * 	transactions
+     * 	liabilities
+     * 	all
+     *
+     * @param array<string> $subtypes
+     * @return void
      */
-    public function setLoanFilters(array $subtypes): self
+    public function setLoanFilters(array $subtypes): void
     {
         $this->setFilter('loan', $subtypes);
-
-        return $this;
     }
 
     /**
      * Set other filters.
      *
-     * @param array<string> $subtypes Any of all, assets, auth, identity, transactions,
-     * @return AccountFilters
+     * Possible values are:
+     * 	auth
+     * 	transactions
+     * 	identity
+     * 	assets
+     *	all
+     *
+     * @param array<string> $subtypes
+     * @return void
      */
-    public function setOtherFilters(array $subtypes): self
+    public function setOtherFilters(array $subtypes): void
     {
         $this->setFilter('other', $subtypes);
-
-        return $this;
     }
 
     /**
@@ -114,5 +126,4 @@ class AccountFilters
     {
         return $this->filters;
     }
-
 }
