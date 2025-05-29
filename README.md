@@ -42,7 +42,7 @@ camel case**.
 Via composer:
 
 ```bash
-composer require abivia/plaid
+composer require hcantave/plaid
 ```
 
 ## Usage
