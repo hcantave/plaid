@@ -34,15 +34,15 @@ camel case**.
 
 ## Requirements
 
-* PHP 8.0+
-* Laravel 8+
+* PHP 8.1| 8.2| 8.3
+* Laravel 10+
 
 ## Installation
 
 Via composer:
 
 ```bash
-composer require abivia/plaid
+composer require hcantave/plaid
 ```
 
 ## Usage
