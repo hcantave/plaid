@@ -1,5 +1,5 @@
 {
-    "name": "caashapp/plaid-sdk-laravel",
+    "name": "hcantave/plaid-sdk-laravel",
     "description": "Laravel implementation of Plaid's API as an SDK.",
     "license": "MIT",
     "authors": [
