@@ -13,7 +13,6 @@
         "illuminate/http": "^9.0|^10.0|^11.0",
         "illuminate/support": "^9.0|^10.0|^11.0",
         "moneyphp/money": "^4.7",
-        "spatie/data-transfer-object": "^3.7",
         "spatie/laravel-data": "^3.0|^4.0"
     },
     "autoload": {

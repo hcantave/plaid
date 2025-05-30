@@ -22,7 +22,7 @@ class User
     /**
      * @var ?string string|null User legal full name
      */
-    protected $name;
+    protected ?string $name;
     /**
      * @var string|null User phone number
      */
