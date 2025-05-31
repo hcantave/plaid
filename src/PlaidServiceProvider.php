@@ -25,7 +25,7 @@ class PlaidServiceProvider extends ServiceProvider
     {
         // Ensure config_path helper exists (for Lumen or non-Laravel apps)
         if (! function_exists('config_path')) {
-            function config_path($path = '')
+            function config_path(?string $path = ''): string
             {
                 global $app;
 
@@ -33,7 +33,7 @@ class PlaidServiceProvider extends ServiceProvider
             }
         }
         if (! function_exists('base_path')) {
-            function base_path($path = '')
+            function base_path(?string $path = ''): string
             {
                 global $app;
 
