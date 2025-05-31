@@ -2,8 +2,8 @@
 
 namespace Hcantave\Plaid\Entities;
 
-use Hcantave\Plaid\Casters\DateTimeCaster;
 use DateTime;
+use Hcantave\Plaid\Casters\DateTimeCaster;
 use Spatie\LaravelData\Attributes\WithCast;
 use Spatie\LaravelData\Data;
 

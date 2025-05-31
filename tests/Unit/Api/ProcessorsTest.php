@@ -3,7 +3,6 @@
 namespace Abivia\Plaid\Tests\Unit\Api;
 
 use Abivia\Plaid\Api\Processors;
-use Abivia\Plaid\Plaid as PlaidCore;
 use Abivia\Plaid\Tests\TestCase;
 use GuzzleHttp\Psr7\Response as PsrResponse;
 use Illuminate\Http\Client\Response;
@@ -16,7 +15,7 @@ use Illuminate\Support\Facades\Http;
  */
 class ProcessorsTest extends TestCase
 {
-    public function testCreateDwollaToken(): void
+    public function test_create_dwolla_token(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -34,7 +33,7 @@ class ProcessorsTest extends TestCase
         $obj->createDwollaToken('access_token', 'account_id');
     }
 
-    public function testCreateStripeToken(): void
+    public function test_create_stripe_token(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -52,7 +51,7 @@ class ProcessorsTest extends TestCase
         $obj->createStripeToken('access_token', 'account_id');
     }
 
-    public function testCreateToken(): void
+    public function test_create_token(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -71,7 +70,7 @@ class ProcessorsTest extends TestCase
         $obj->createToken('access_token', 'account_id', 'processor');
     }
 
-    public function testGetAuth(): void
+    public function test_get_auth(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -88,7 +87,7 @@ class ProcessorsTest extends TestCase
         $obj->getAuth('processor_token');
     }
 
-    public function testGetBalance(): void
+    public function test_get_balance(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -105,7 +104,7 @@ class ProcessorsTest extends TestCase
         $obj->getBalance('processor_token');
     }
 
-    public function testGetIdentity(): void
+    public function test_get_identity(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')

@@ -3,7 +3,6 @@
 namespace Abivia\Plaid\Tests\Unit\Api;
 
 use Abivia\Plaid\Api\Institutions;
-use Abivia\Plaid\Plaid as PlaidCore;
 use Abivia\Plaid\Tests\TestCase;
 use GuzzleHttp\Psr7\Response as PsrResponse;
 use Illuminate\Http\Client\Response;
@@ -16,7 +15,7 @@ use Illuminate\Support\Facades\Http;
  */
 class InstitutionsTest extends TestCase
 {
-    public function testFindInstitution(): void
+    public function test_find_institution(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -25,17 +24,14 @@ class InstitutionsTest extends TestCase
                     'client_id' => 'id',
                     'secret' => 'secret',
                     'query' => 'boeing',
-                    'products' =>
-                        [
-                            0 => 'transactions',
-                            1 => 'mfa',
-                        ],
-                    'country_codes' =>
-                        [
-                            0 => 'US',
-                        ],
-                    'options' =>
-                        (object)[],
+                    'products' => [
+                        0 => 'transactions',
+                        1 => 'mfa',
+                    ],
+                    'country_codes' => [
+                        0 => 'US',
+                    ],
+                    'options' => (object) [],
                 ]
             )
             ->andReturn(new Response($psrResponse));
@@ -44,7 +40,7 @@ class InstitutionsTest extends TestCase
         $obj->find('boeing', ['US'], ['transactions', 'mfa']);
     }
 
-    public function testGetInstitution(): void
+    public function test_get_institution(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -53,12 +49,10 @@ class InstitutionsTest extends TestCase
                     'client_id' => 'id',
                     'secret' => 'secret',
                     'institution_id' => 'ins_12345',
-                    'country_codes' =>
-                        [
-                            0 => 'US',
-                        ],
-                    'options' =>
-                        (object)[],
+                    'country_codes' => [
+                        0 => 'US',
+                    ],
+                    'options' => (object) [],
                 ]
             )
             ->andReturn(new Response($psrResponse));
@@ -67,7 +61,7 @@ class InstitutionsTest extends TestCase
         $obj->get('ins_12345', ['US']);
     }
 
-    public function testListInstitutions(): void
+    public function test_list_institutions(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -77,13 +71,11 @@ class InstitutionsTest extends TestCase
                     'secret' => 'secret',
                     'count' => 100,
                     'offset' => 200,
-                    'country_codes' =>
-                        [
-                            0 => 'US',
-                        ],
-                    'options' =>
-                        (object)[
-                        ],
+                    'country_codes' => [
+                        0 => 'US',
+                    ],
+                    'options' => (object) [
+                    ],
                 ]
             )
             ->andReturn(new Response($psrResponse));

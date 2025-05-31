@@ -23,6 +23,7 @@ class BalanceCaster implements Cast
             'last_updated_datetime' => $value['last_updated_datetime'] ?? null,
         ]);
     }
+
     protected function parseMoney(mixed $value, string $key): ?Money
     {
         if (! isset($value[$key]) || is_null($value[$key])) {
@@ -30,7 +31,7 @@ class BalanceCaster implements Cast
         }
 
         $currencyCode = $value['iso_currency_code'] ?? $value['unofficial_currency_code'];
-        $moneyParser = new DecimalMoneyParser(new ISOCurrencies());
+        $moneyParser = new DecimalMoneyParser(new ISOCurrencies);
 
         return $moneyParser->parse((string) $value[$key], new Currency($currencyCode));
     }

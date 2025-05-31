@@ -3,7 +3,6 @@
 namespace Abivia\Plaid\Tests\Unit\Api;
 
 use Abivia\Plaid\Api\Reports;
-use Abivia\Plaid\Plaid as PlaidCore;
 use Abivia\Plaid\PlaidRequestException;
 use Abivia\Plaid\Tests\TestCase;
 use GuzzleHttp\Psr7\Response as PsrResponse;
@@ -18,7 +17,7 @@ use Illuminate\Support\Facades\Http;
  */
 class ReportsTest extends TestCase
 {
-    public function testCreateAssetReport(): void
+    public function test_create_asset_report(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -26,13 +25,12 @@ class ReportsTest extends TestCase
                 [
                     'client_id' => 'id',
                     'secret' => 'secret',
-                    'access_tokens' =>
-                        [
-                            0 => 'access_token1',
-                            1 => 'access_token2',
-                        ],
+                    'access_tokens' => [
+                        0 => 'access_token1',
+                        1 => 'access_token2',
+                    ],
                     'days_requested' => 30,
-                    'options' => (object)[],
+                    'options' => (object) [],
                 ]
             )
             ->andReturn(new Response($psrResponse));
@@ -41,7 +39,7 @@ class ReportsTest extends TestCase
         $obj->createAssetReport(['access_token1', 'access_token2'], 30);
     }
 
-    public function testCreateAssetReportAuditCopy(): void
+    public function test_create_asset_report_audit_copy(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -59,7 +57,7 @@ class ReportsTest extends TestCase
         $obj->createAssetReportAuditCopy('asset_report_token', 'auditor_id');
     }
 
-    public function testFilterAssetReport(): void
+    public function test_filter_asset_report(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -68,11 +66,10 @@ class ReportsTest extends TestCase
                     'client_id' => 'id',
                     'secret' => 'secret',
                     'asset_report_token' => 'asset_report_token',
-                    'account_ids_to_exclude' =>
-                        [
-                            0 => 'account1',
-                            1 => 'account2',
-                        ],
+                    'account_ids_to_exclude' => [
+                        0 => 'account1',
+                        1 => 'account2',
+                    ],
                 ]
             )
             ->andReturn(new Response($psrResponse));
@@ -81,7 +78,7 @@ class ReportsTest extends TestCase
         $obj->filterAssetReport('asset_report_token', ['account1', 'account2']);
     }
 
-    public function testGetAssetReport(): void
+    public function test_get_asset_report(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -99,7 +96,7 @@ class ReportsTest extends TestCase
         $obj->getAssetReport('asset_report_token', true);
     }
 
-    public function testGetAssetReportPdf(): void
+    public function test_get_asset_report_pdf(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -114,7 +111,7 @@ class ReportsTest extends TestCase
         $obj->getAssetReportPdf('asset_report_token');
     }
 
-    public function testGetAssetReportPdfThrowsOnFail(): void
+    public function test_get_asset_report_pdf_throws_on_fail(): void
     {
         $psrResponse = (new PsrResponse(400, [], '{}'));
         Http::shouldReceive('post')
@@ -130,7 +127,7 @@ class ReportsTest extends TestCase
         $obj->getAssetReportPdf('asset_report_token', true);
     }
 
-    public function testRefreshAssetReport(): void
+    public function test_refresh_asset_report(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -140,7 +137,7 @@ class ReportsTest extends TestCase
                     'secret' => 'secret',
                     'asset_report_token' => 'asset_report_token',
                     'days_requested' => 30,
-                    'options' => (object)[],
+                    'options' => (object) [],
                 ]
             )
             ->andReturn(new Response($psrResponse));
@@ -149,7 +146,7 @@ class ReportsTest extends TestCase
         $obj->refreshAssetReport('asset_report_token', 30);
     }
 
-    public function testRemoveAssetReport(): void
+    public function test_remove_asset_report(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -166,7 +163,7 @@ class ReportsTest extends TestCase
         $obj->removeAssetReport('asset_report_token');
     }
 
-    public function testRemoveAssetReportAuditCopy(): void
+    public function test_remove_asset_report_audit_copy(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')

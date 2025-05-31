@@ -6,8 +6,8 @@ use Abivia\Plaid\Api\Transactions;
 use Abivia\Plaid\Tests\TestCase;
 use GuzzleHttp\Psr7\Response as PsrResponse;
 use Illuminate\Http\Client\Response;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Http;
 
 /**
  * @covers \Abivia\Plaid\Plaid
@@ -16,7 +16,7 @@ use Illuminate\Support\Carbon;
  */
 class TransactionsTest extends TestCase
 {
-    public function testGetTransactions(): void
+    public function test_get_transactions(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -27,8 +27,7 @@ class TransactionsTest extends TestCase
                     'access_token' => 'access_token',
                     'start_date' => '2019-01-01',
                     'end_date' => '2019-03-31',
-                    'options' =>
-                        (object)[],
+                    'options' => (object) [],
                 ]
             )
             ->andReturn(new Response($psrResponse));
@@ -41,7 +40,7 @@ class TransactionsTest extends TestCase
         );
     }
 
-    public function testRefreshTransactions(): void
+    public function test_refresh_transactions(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -57,5 +56,4 @@ class TransactionsTest extends TestCase
         $obj = new Transactions('id', 'secret', '');
         $obj->refresh('access_token');
     }
-
 }

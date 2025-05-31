@@ -2,30 +2,21 @@
 
 namespace Abivia\Plaid\Api;
 
+use Abivia\Plaid\Entities\AccountFilters;
 use Abivia\Plaid\Entities\User;
 use Abivia\Plaid\PlaidRequestException;
-use Abivia\Plaid\Entities\AccountFilters;
 
 class Tokens extends AbstractResource
 {
     /**
      * Create a Link Token.
      *
-     * @param string $clientName
-     * @param string $language Possible values are: en, fr, es, nl
-     * @param array<string> $countryCodes Possible values are: CA, FR, IE, NL, ES, GB, US
-     * @param User $user
-     * @param array<string> $products Possible values are: transactions, auth, identity, income, assets, investments, liabilities, payment_initiation
-     * @param string|null $webhook
-     * @param string|null $linkCustomizationName
-     * @param AccountFilters|null $accountFilters
-     * @param string|null $accessToken
-     * @param string|null $redirectUri
-     * @param string|null $androidPackageName
-     * @param string|null $paymentId
-     * @param string|null $institutionId
-     * @return Tokens
+     * @param  string  $language  Possible values are: en, fr, es, nl
+     * @param  array<string>  $countryCodes  Possible values are: CA, FR, IE, NL, ES, GB, US
+     * @param  array<string>  $products  Possible values are: transactions, auth, identity, income, assets, investments, liabilities, payment_initiation
+     *
      * @throws PlaidRequestException
+     *
      * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      */
     public function create(
@@ -57,7 +48,7 @@ class Tokens extends AbstractResource
             'language' => $language,
             'country_codes' => $countryCodes,
             'user' => $user->toArray(),
-            'products' => $products
+            'products' => $products,
         ];
         foreach ($argMap as $argument => $param) {
             if ($$argument !== null) {
@@ -69,7 +60,7 @@ class Tokens extends AbstractResource
         }
         if ($paymentId) {
             $params['payment_initiation'] = [
-                'payment_id' => $paymentId
+                'payment_id' => $paymentId,
             ];
         }
 
@@ -81,8 +72,6 @@ class Tokens extends AbstractResource
     /**
      * Get information about a previously created Link token.
      *
-     * @param string $linkToken
-     * @return Tokens
      * @throws PlaidRequestException
      */
     public function get(string $linkToken): self
@@ -91,5 +80,4 @@ class Tokens extends AbstractResource
 
         return $this;
     }
-
 }

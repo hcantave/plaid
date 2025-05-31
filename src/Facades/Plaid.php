@@ -2,6 +2,7 @@
 
 namespace Hcantave\Plaid\Facades;
 
+use DateTime;
 use Hcantave\Plaid\Resources\AccessTokenResource;
 use Hcantave\Plaid\Resources\AccountsResource;
 use Hcantave\Plaid\Resources\InstitutionCollectionResource;
@@ -14,7 +15,6 @@ use Hcantave\Plaid\Resources\PublicTokenResource;
 use Hcantave\Plaid\Resources\ResetItemResource;
 use Hcantave\Plaid\Resources\TransactionsResource;
 use Hcantave\Plaid\Resources\WebhookFiredResource;
-use DateTime;
 use Illuminate\Support\Facades\Facade;
 
 /**

@@ -6,6 +6,7 @@ use Abivia\Plaid\Entities\BacsAccount;
 use Abivia\Plaid\Entities\PaymentSchedule;
 use Abivia\Plaid\Entities\RecipientAddress;
 use Abivia\Plaid\PlaidRequestException;
+
 use function is_string;
 
 class Payments extends AbstractResource
@@ -13,12 +14,6 @@ class Payments extends AbstractResource
     /**
      * Create a payment request.
      *
-     * @param string $recipientId
-     * @param string $reference
-     * @param string $amount
-     * @param string $currency
-     * @param PaymentSchedule|null $paymentSchedule
-     * @return Payments
      * @throws PlaidRequestException
      */
     public function create(
@@ -26,22 +21,22 @@ class Payments extends AbstractResource
         string $reference,
         string $amount,
         string $currency,
-        PaymentSchedule $paymentSchedule = null
+        ?PaymentSchedule $paymentSchedule = null
     ): self {
         $params = [
-            "recipient_id" => $recipientId,
-            "reference" => $reference,
-            "amount" => [
-                "value" => $amount,
-                "currency" => $currency
-            ]
+            'recipient_id' => $recipientId,
+            'reference' => $reference,
+            'amount' => [
+                'value' => $amount,
+                'currency' => $currency,
+            ],
         ];
 
         if ($paymentSchedule) {
-            $params["schedule"] = [
-                "interval" => $paymentSchedule->getInterval(),
-                "interval_execution_day" => $paymentSchedule->getIntervalExecutionDay(),
-                "start_date" => $paymentSchedule->getStartDate()->format("Y-m-d")
+            $params['schedule'] = [
+                'interval' => $paymentSchedule->getInterval(),
+                'interval_execution_day' => $paymentSchedule->getIntervalExecutionDay(),
+                'start_date' => $paymentSchedule->getStartDate()->format('Y-m-d'),
             ];
         }
 
@@ -53,21 +48,16 @@ class Payments extends AbstractResource
     /**
      * Create a recipient request for payment initiation.
      *
-     * @param string $name
-     * @param string|BacsAccount $account
-     * @param RecipientAddress $address
-     * @return Payments
      * @throws PlaidRequestException
      */
     public function createRecipient(
         string $name,
         BacsAccount|string $account,
         RecipientAddress $address
-    ): self
-    {
+    ): self {
         $params = [
             'name' => $name,
-            'address' => (object)$address->toArray()
+            'address' => (object) $address->toArray(),
         ];
 
         if (is_string($account)) {
@@ -84,8 +74,6 @@ class Payments extends AbstractResource
     /**
      * Create a payment token.
      *
-     * @param string $payment_id
-     * @return Payments
      * @throws PlaidRequestException
      */
     public function createToken(string $payment_id): self
@@ -101,14 +89,12 @@ class Payments extends AbstractResource
     /**
      * Get payment details.
      *
-     * @param string $paymentId
-     * @return Payments
      * @throws PlaidRequestException
      */
     public function get(string $paymentId): self
     {
         $this->sendRequest(
-            "payment_initiation/payment/get",
+            'payment_initiation/payment/get',
             ['payment_id' => $paymentId]
         );
 
@@ -118,8 +104,6 @@ class Payments extends AbstractResource
     /**
      * Get a recipient request from a payment initiation.
      *
-     * @param string $recipientId
-     * @return Payments
      * @throws PlaidRequestException
      */
     public function getRecipient(string $recipientId): self
@@ -135,15 +119,13 @@ class Payments extends AbstractResource
     /**
      * List all payments.
      *
-     * @param array $options
-     * @return Payments
      * @throws PlaidRequestException
      */
     public function list(array $options = []): self
     {
         $this->sendRequest(
             'payment_initiation/payment/list',
-            ['options' => (object)$options]
+            ['options' => (object) $options]
         );
 
         return $this;
@@ -152,7 +134,6 @@ class Payments extends AbstractResource
     /**
      * List out all recipients for payment initiations.
      *
-     * @return Payments
      * @throws PlaidRequestException
      */
     public function listRecipients(): self

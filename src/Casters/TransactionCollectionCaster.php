@@ -20,6 +20,7 @@ class TransactionCollectionCaster implements Cast
             ]));
         });
     }
+
     protected function parseMoney(mixed $value, string $key): ?Money
     {
         if (! isset($value[$key]) || is_null($value[$key])) {
@@ -27,7 +28,7 @@ class TransactionCollectionCaster implements Cast
         }
 
         $currencyCode = $value['iso_currency_code'] ?? $value['unofficial_currency_code'];
-        $moneyParser = new DecimalMoneyParser(new ISOCurrencies());
+        $moneyParser = new DecimalMoneyParser(new ISOCurrencies);
 
         return $moneyParser->parse((string) $value[$key], new Currency($currencyCode));
     }

@@ -3,8 +3,6 @@
 namespace Abivia\Plaid\Tests\Unit\Api;
 
 use Abivia\Plaid\Api\Items;
-use Abivia\Plaid\Plaid;
-use Abivia\Plaid\Plaid as PlaidCore;
 use Abivia\Plaid\PlaidRequestException;
 use Abivia\Plaid\Tests\TestCase;
 use GuzzleHttp\Psr7\Response as PsrResponse;
@@ -20,7 +18,7 @@ use UnexpectedValueException;
  */
 class AbstractResourceTest extends TestCase
 {
-    public function testInvalidJsonWhenParsingResponse(): void
+    public function test_invalid_json_when_parsing_response(): void
     {
         $psrResponse = new PsrResponse(200, [], 'this is not valid JSON');
         Http::shouldReceive('post')
@@ -33,7 +31,7 @@ class AbstractResourceTest extends TestCase
         $obj->get('access_token');
     }
 
-    public function testRequestExceptionPassesThroughHttpStatusCode(): void
+    public function test_request_exception_passes_through_http_status_code(): void
     {
         $psrResponse = new PsrResponse(300, [], '{"display_message": "DISPLAY MESSAGE"}');
         Http::shouldReceive('post')
@@ -50,7 +48,7 @@ class AbstractResourceTest extends TestCase
         }
     }
 
-    public function testRequestExceptionPassesThroughPlaidDisplayMessage(): void
+    public function test_request_exception_passes_through_plaid_display_message(): void
     {
         $psrResponse = new PsrResponse(300, [], '{"display_message": "DISPLAY MESSAGE"}');
         Http::shouldReceive('post')

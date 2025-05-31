@@ -9,8 +9,6 @@ class Items extends AbstractResource
     /**
      * Create a new Item public token.
      *
-     * @param string $accessToken
-     * @return Items
      * @throws PlaidRequestException
      */
     public function createPublicToken(string $accessToken): self
@@ -26,8 +24,6 @@ class Items extends AbstractResource
     /**
      * Exchange an Item public token for an access token.
      *
-     * @param string $publicToken
-     * @return Items
      * @throws PlaidRequestException
      */
     public function exchangeToken(string $publicToken): self
@@ -43,8 +39,6 @@ class Items extends AbstractResource
     /**
      * Get an Item.
      *
-     * @param string $accessToken
-     * @return Items
      * @throws PlaidRequestException
      */
     public function get(string $accessToken): self
@@ -57,8 +51,6 @@ class Items extends AbstractResource
     /**
      * Get an Item's income information.
      *
-     * @param string $accessToken
-     * @return Items
      * @throws PlaidRequestException
      */
     public function getIncome(string $accessToken): self
@@ -71,8 +63,6 @@ class Items extends AbstractResource
     /**
      * Remove an Item.
      *
-     * @param string $accessToken
-     * @return Items
      * @throws PlaidRequestException
      */
     public function remove(string $accessToken): self
@@ -85,8 +75,6 @@ class Items extends AbstractResource
     /**
      * Rotate an Item's access token.
      *
-     * @param string $accessToken
-     * @return Items
      * @throws PlaidRequestException
      */
     public function rotateAccessToken(string $accessToken): self

@@ -11,7 +11,7 @@ class TransactionTest extends TestCase
 {
     const TD_CANADA = 'ins_42';
 
-    public function testGetTransactions()
+    public function test_get_transactions()
     {
         try {
             Plaid::environment('sandbox');
@@ -24,7 +24,7 @@ class TransactionTest extends TestCase
             );
             $this->assertIsArray($transactions->accounts);
         } catch (PlaidRequestException $ex) {
-            $this->addWarning("Plaid error response " . $ex->getMessage());
+            $this->addWarning('Plaid error response '.$ex->getMessage());
             print_r($ex->getBody());
         }
     }

@@ -3,11 +3,10 @@
 namespace Abivia\Plaid\Tests\Unit\Api;
 
 use Abivia\Plaid\Api\Investments;
-use Abivia\Plaid\Plaid as PlaidCore;
 use Abivia\Plaid\Tests\TestCase;
-use Illuminate\Support\Carbon;
 use GuzzleHttp\Psr7\Response as PsrResponse;
 use Illuminate\Http\Client\Response;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Http;
 
 /**
@@ -17,7 +16,7 @@ use Illuminate\Support\Facades\Http;
  */
 class InvestmentsTest extends TestCase
 {
-    public function testGetHoldings(): void
+    public function test_get_holdings(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -26,8 +25,7 @@ class InvestmentsTest extends TestCase
                     'client_id' => 'id',
                     'secret' => 'secret',
                     'access_token' => 'access_token',
-                    'options' =>
-                        (object)[],
+                    'options' => (object) [],
                 ]
             )
             ->andReturn(new Response($psrResponse));
@@ -36,7 +34,7 @@ class InvestmentsTest extends TestCase
         $obj->listHoldings('access_token', []);
     }
 
-    public function testGetTransactions(): void
+    public function test_get_transactions(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -47,7 +45,7 @@ class InvestmentsTest extends TestCase
                     'access_token' => 'access_token',
                     'start_date' => '2019-01-01',
                     'end_date' => '2019-03-31',
-                    'options' => (object)[],
+                    'options' => (object) [],
                 ]
             )
             ->andReturn(new Response($psrResponse));

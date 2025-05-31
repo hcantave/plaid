@@ -9,10 +9,9 @@ class Institutions extends AbstractResource
     /**
      * Get a specific Institution.
      *
-     * @param string $institutionId
-     * @param array<string> $countryCodes
-     * @param array<string,mixed> $options
-     * @return Institutions
+     * @param  array<string>  $countryCodes
+     * @param  array<string,mixed>  $options
+     *
      * @throws PlaidRequestException
      */
     public function get(string $institutionId, array $countryCodes, array $options = []): self
@@ -22,7 +21,7 @@ class Institutions extends AbstractResource
             [
                 'institution_id' => $institutionId,
                 'country_codes' => $countryCodes,
-                'options' => (object)$options
+                'options' => (object) $options,
             ]
         );
 
@@ -32,11 +31,9 @@ class Institutions extends AbstractResource
     /**
      * Get all Institutions.
      *
-     * @param integer $count
-     * @param integer $offset
-     * @param array<string> $countryCodes
-     * @param array<string,mixed> $options
-     * @return Institutions
+     * @param  array<string>  $countryCodes
+     * @param  array<string,mixed>  $options
+     *
      * @throws PlaidRequestException
      */
     public function list(int $count, int $offset, array $countryCodes, array $options = []): self
@@ -47,7 +44,7 @@ class Institutions extends AbstractResource
                 'count' => $count,
                 'offset' => $offset,
                 'country_codes' => $countryCodes,
-                'options' => (object)$options
+                'options' => (object) $options,
             ]
         );
 
@@ -57,11 +54,10 @@ class Institutions extends AbstractResource
     /**
      * Find an Institution by a search query.
      *
-     * @param string $query
-     * @param array<string> $countryCodes Possible values: US, GB, ES, NL, FR, IE, CA
-     * @param array<string> $products
-     * @param array<string,mixed> $options
-     * @return Institutions
+     * @param  array<string>  $countryCodes  Possible values: US, GB, ES, NL, FR, IE, CA
+     * @param  array<string>  $products
+     * @param  array<string,mixed>  $options
+     *
      * @throws PlaidRequestException
      */
     public function find(
@@ -76,11 +72,10 @@ class Institutions extends AbstractResource
                 'query' => $query,
                 'products' => $products ? $products : null,
                 'country_codes' => $countryCodes,
-                'options' => (object)$options
+                'options' => (object) $options,
             ]
         );
 
         return $this;
     }
-
 }

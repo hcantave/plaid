@@ -11,10 +11,10 @@ use ReflectionClass;
  */
 class AccountFiltersTest extends TestCase
 {
-    public function testConstructorSetsFilters(): void
+    public function test_constructor_sets_filters(): void
     {
         $filters = [
-            'depository' => ['auth', 'identity']
+            'depository' => ['auth', 'identity'],
         ];
 
         $accountFilters = new AccountFilters($filters);
@@ -22,14 +22,14 @@ class AccountFiltersTest extends TestCase
         $this->assertEquals(
             [
                 'depository' => [
-                    'account_subtypes' => ['auth', 'identity']
-                ]
+                    'account_subtypes' => ['auth', 'identity'],
+                ],
             ],
             $accountFilters->toArray()
         );
     }
 
-    public function testSetFilterIgnoresEmptySubtypeArray(): void
+    public function test_set_filter_ignores_empty_subtype_array(): void
     {
         $accountFilters = new AccountFilters;
 
@@ -44,7 +44,7 @@ class AccountFiltersTest extends TestCase
         );
     }
 
-    public function testSetDepositoryFilters(): void
+    public function test_set_depository_filters(): void
     {
         $accountFilters = new AccountFilters;
         $accountFilters->setDepositoryFilters(['auth', 'transactions', 'identity', 'income', 'assets']);
@@ -52,14 +52,14 @@ class AccountFiltersTest extends TestCase
         $this->assertEquals(
             [
                 'depository' => [
-                    'account_subtypes' => ['auth', 'transactions', 'identity', 'income', 'assets']
-                ]
+                    'account_subtypes' => ['auth', 'transactions', 'identity', 'income', 'assets'],
+                ],
             ],
             $accountFilters->toArray()
         );
     }
 
-    public function testSetCreditFilters(): void
+    public function test_set_credit_filters(): void
     {
         $accountFilters = new AccountFilters;
         $accountFilters->setCreditFilters(['transactions', 'identity', 'liabilities']);
@@ -67,14 +67,14 @@ class AccountFiltersTest extends TestCase
         $this->assertEquals(
             [
                 'credit' => [
-                    'account_subtypes' => ['transactions', 'identity', 'liabilities']
-                ]
+                    'account_subtypes' => ['transactions', 'identity', 'liabilities'],
+                ],
             ],
             $accountFilters->toArray()
         );
     }
 
-    public function testSetInvestmentFilters(): void
+    public function test_set_investment_filters(): void
     {
         $accountFilters = new AccountFilters;
         $accountFilters->setInvestmentFilters(['investments']);
@@ -82,14 +82,14 @@ class AccountFiltersTest extends TestCase
         $this->assertEquals(
             [
                 'investment' => [
-                    'account_subtypes' => ['investments']
-                ]
+                    'account_subtypes' => ['investments'],
+                ],
             ],
             $accountFilters->toArray()
         );
     }
 
-    public function testSetLoanFilters(): void
+    public function test_set_loan_filters(): void
     {
         $accountFilters = new AccountFilters;
         $accountFilters->setLoanFilters(['transactions', 'liabilities']);
@@ -97,14 +97,14 @@ class AccountFiltersTest extends TestCase
         $this->assertEquals(
             [
                 'loan' => [
-                    'account_subtypes' => ['transactions', 'liabilities']
-                ]
+                    'account_subtypes' => ['transactions', 'liabilities'],
+                ],
             ],
             $accountFilters->toArray()
         );
     }
 
-    public function testSetOtherFilters(): void
+    public function test_set_other_filters(): void
     {
         $accountFilters = new AccountFilters;
         $accountFilters->setOtherFilters(['auth', 'transactions', 'identity', 'assets']);
@@ -112,8 +112,8 @@ class AccountFiltersTest extends TestCase
         $this->assertEquals(
             [
                 'other' => [
-                    'account_subtypes' => ['auth', 'transactions', 'identity', 'assets']
-                ]
+                    'account_subtypes' => ['auth', 'transactions', 'identity', 'assets'],
+                ],
             ],
             $accountFilters->toArray()
         );

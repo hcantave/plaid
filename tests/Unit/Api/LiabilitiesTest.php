@@ -3,7 +3,6 @@
 namespace Abivia\Plaid\Tests\Unit\Api;
 
 use Abivia\Plaid\Api\Liabilities;
-use Abivia\Plaid\Plaid as PlaidCore;
 use Abivia\Plaid\Tests\TestCase;
 use GuzzleHttp\Psr7\Response as PsrResponse;
 use Illuminate\Http\Client\Response;
@@ -16,7 +15,7 @@ use Illuminate\Support\Facades\Http;
  */
 class LiabilitiesTest extends TestCase
 {
-    public function testGetLiabilities(): void
+    public function test_get_liabilities(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -25,7 +24,7 @@ class LiabilitiesTest extends TestCase
                     'client_id' => 'id',
                     'secret' => 'secret',
                     'access_token' => 'access_token',
-                    'options' => (object)[],
+                    'options' => (object) [],
                 ]
             )
             ->andReturn(new Response($psrResponse));
@@ -33,5 +32,4 @@ class LiabilitiesTest extends TestCase
         $obj = new Liabilities('id', 'secret', '');
         $obj->list('access_token');
     }
-
 }

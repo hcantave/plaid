@@ -9,13 +9,11 @@ class Webhooks extends AbstractResource
     /**
      * Get public key corresponding to key id inside webhook request.
      *
-     * @param string $keyId
-     * @return Webhooks
      * @throws PlaidRequestException
      */
     public function getVerificationKey(string $keyId): self
     {
-        $this->sendRequest('webhook_verification_key/get', ["key_id" => $keyId]);
+        $this->sendRequest('webhook_verification_key/get', ['key_id' => $keyId]);
 
         return $this;
     }
@@ -23,9 +21,6 @@ class Webhooks extends AbstractResource
     /**
      * Update an Item webhook.
      *
-     * @param string $accessToken
-     * @param string $webhook
-     * @return Webhooks
      * @throws PlaidRequestException
      */
     public function update(string $accessToken, string $webhook): self
@@ -34,11 +29,10 @@ class Webhooks extends AbstractResource
             'item/webhook/update',
             [
                 'access_token' => $accessToken,
-                'webhook' => $webhook
+                'webhook' => $webhook,
             ]
         );
 
         return $this;
     }
-
 }

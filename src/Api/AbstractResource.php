@@ -3,10 +3,10 @@
 namespace Abivia\Plaid\Api;
 
 use Abivia\Plaid\Helpers\CaseMapper;
-use Illuminate\Http\Client\Response;
-use Illuminate\Support\Facades\Http;
 use Abivia\Plaid\Plaid;
 use Abivia\Plaid\PlaidRequestException;
+use Illuminate\Http\Client\Response;
+use Illuminate\Support\Facades\Http;
 use UnexpectedValueException;
 
 abstract class AbstractResource extends CaseMapper
@@ -15,10 +15,12 @@ abstract class AbstractResource extends CaseMapper
      * @var string Plaid host URL.
      */
     private string $baseUrl;
+
     /**
      * @var string Plaid client Id.
      */
     private string $clientId;
+
     /**
      * @var string Plaid client secret.
      */
@@ -26,17 +28,11 @@ abstract class AbstractResource extends CaseMapper
 
     public object $data;
 
-    /**
-     * @param string $clientId
-     * @param string $clientSecret
-     * @param string $baseUrl
-     */
     public function __construct(
         string $clientId,
         string $clientSecret,
         string $baseUrl
-    )
-    {
+    ) {
         $this->clientId = $clientId;
         $this->clientSecret = $clientSecret;
         $this->baseUrl = $baseUrl;
@@ -49,9 +45,6 @@ abstract class AbstractResource extends CaseMapper
 
     /**
      * Build request body with client credentials.
-     *
-     * @param array $params
-     * @return array
      */
     protected function addClientCredentials(array $params = []): array
     {
@@ -61,36 +54,34 @@ abstract class AbstractResource extends CaseMapper
         );
     }
 
-    public function response(): object{
+    public function response(): object
+    {
         return $this->data;
     }
 
     /**
      * Send a request and parse the response.
      *
-     * @param string $path
-     * @param array $params
-     * @param bool $addCredentials
-     * @return object
+     * @param  bool  $addCredentials
+     *
      * @throws PlaidRequestException
      */
     protected function sendRequest(
         string $path, array $params = [], $addCredentials = true
-    ): object
-    {
+    ): object {
         if ($addCredentials) {
             $params = $this->addClientCredentials($params);
         }
 
-        $response = Http::withHeaders(['Plaid-Version' => Plaid::API_VERSION,])
-            ->post($this->baseUrl . $path, $params);
+        $response = Http::withHeaders(['Plaid-Version' => Plaid::API_VERSION])
+            ->post($this->baseUrl.$path, $params);
         if ($response->failed()) {
             throw new PlaidRequestException($response);
         }
 
         $decoded = \json_decode($response->body());
-        if (\json_last_error() !== JSON_ERROR_NONE || !is_object($decoded)) {
-            throw new UnexpectedValueException("Invalid JSON response returned by Plaid");
+        if (\json_last_error() !== JSON_ERROR_NONE || ! is_object($decoded)) {
+            throw new UnexpectedValueException('Invalid JSON response returned by Plaid');
         }
         $this->data = CaseMapper::map($decoded);
 
@@ -100,14 +91,11 @@ abstract class AbstractResource extends CaseMapper
     /**
      * Make an HTTP request and return the unmodified Response.
      *
-     * @param string $path
-     * @param array $params
-     * @return Response
      * @throws PlaidRequestException
      */
     protected function sendRequestRawResponse(string $path, array $params = []): Response
     {
-        $response = Http::withHeaders(["Plaid-Version" => Plaid::API_VERSION,])
+        $response = Http::withHeaders(['Plaid-Version' => Plaid::API_VERSION])
             ->post($path, $params);
 
         if ($response->failed()) {

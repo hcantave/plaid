@@ -9,22 +9,20 @@ class Liabilities extends AbstractResource
     /**
      * Get Liabilities request.
      *
-     * @param string $accessToken
-     * @param array<string,mixed> $options
-     * @return Liabilities
+     * @param  array<string,mixed>  $options
+     *
      * @throws PlaidRequestException
      */
-	public function list(string $accessToken, array $options = []): self
-	{
+    public function list(string $accessToken, array $options = []): self
+    {
         $this->sendRequest(
             'liabilities/get',
             [
                 'access_token' => $accessToken,
-                'options' => (object) $options
+                'options' => (object) $options,
             ]
         );
 
         return $this;
     }
-
 }

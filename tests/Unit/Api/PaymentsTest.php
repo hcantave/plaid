@@ -6,11 +6,10 @@ use Abivia\Plaid\Api\Payments;
 use Abivia\Plaid\Entities\BacsAccount;
 use Abivia\Plaid\Entities\PaymentSchedule;
 use Abivia\Plaid\Entities\RecipientAddress;
-use Abivia\Plaid\Plaid as PlaidCore;
 use Abivia\Plaid\Tests\TestCase;
-use Illuminate\Support\Carbon;
 use GuzzleHttp\Psr7\Response as PsrResponse;
 use Illuminate\Http\Client\Response;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Http;
 
 /**
@@ -23,7 +22,7 @@ use Illuminate\Support\Facades\Http;
  */
 class PaymentsTest extends TestCase
 {
-    public function testCreatePayment(): void
+    public function test_create_payment(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -33,11 +32,10 @@ class PaymentsTest extends TestCase
                     'secret' => 'secret',
                     'recipient_id' => 'rcp_1234',
                     'reference' => 'ref_5678',
-                    'amount' =>
-                        [
-                            'value' => '250.25',
-                            'currency' => 'GBP',
-                        ],
+                    'amount' => [
+                        'value' => '250.25',
+                        'currency' => 'GBP',
+                    ],
                 ]
             )
             ->andReturn(new Response($psrResponse));
@@ -46,7 +44,7 @@ class PaymentsTest extends TestCase
         $obj->create('rcp_1234', 'ref_5678', 250.25, 'GBP');
     }
 
-    public function testCreatePaymentToken(): void
+    public function test_create_payment_token(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -63,7 +61,7 @@ class PaymentsTest extends TestCase
         $obj->createToken('pmt_1234');
     }
 
-    public function testCreatePaymentWithSchedule(): void
+    public function test_create_payment_with_schedule(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -73,17 +71,15 @@ class PaymentsTest extends TestCase
                     'secret' => 'secret',
                     'recipient_id' => 'rcp_1234',
                     'reference' => 'ref_5678',
-                    'amount' =>
-                        [
-                            'value' => '250.25',
-                            'currency' => 'GBP',
-                        ],
-                    'schedule' =>
-                        [
-                            'interval' => 'MONTHLY',
-                            'interval_execution_day' => 15,
-                            'start_date' => '2020-10-15',
-                        ],
+                    'amount' => [
+                        'value' => '250.25',
+                        'currency' => 'GBP',
+                    ],
+                    'schedule' => [
+                        'interval' => 'MONTHLY',
+                        'interval_execution_day' => 15,
+                        'start_date' => '2020-10-15',
+                    ],
                 ]
             )
             ->andReturn(new Response($psrResponse));
@@ -102,7 +98,7 @@ class PaymentsTest extends TestCase
         );
     }
 
-    public function testCreateRecipient(): void
+    public function test_create_recipient(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -111,16 +107,14 @@ class PaymentsTest extends TestCase
                     'client_id' => 'id',
                     'secret' => 'secret',
                     'name' => 'name',
-                    'address' =>
-                        (object)[
-                            'street' =>
-                                [
-                                    0 => '139 The Esplanade',
-                                ],
-                            'city' => 'Weymouth',
-                            'postal_code' => 'DT4 7NR',
-                            'country' => 'GB',
+                    'address' => (object) [
+                        'street' => [
+                            0 => '139 The Esplanade',
                         ],
+                        'city' => 'Weymouth',
+                        'postal_code' => 'DT4 7NR',
+                        'country' => 'GB',
+                    ],
                     'iban' => 'iban',
                 ]
             )
@@ -137,7 +131,7 @@ class PaymentsTest extends TestCase
         );
     }
 
-    public function testCreateRecipientWithBacsAccountEntity(): void
+    public function test_create_recipient_with_bacs_account_entity(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -146,21 +140,18 @@ class PaymentsTest extends TestCase
                     'client_id' => 'id',
                     'secret' => 'secret',
                     'name' => 'name',
-                    'address' =>
-                        (object)[
-                            'street' =>
-                                [
-                                    0 => '139 The Esplanade',
-                                ],
-                            'city' => 'Weymouth',
-                            'postal_code' => 'DT4 7NR',
-                            'country' => 'GB',
+                    'address' => (object) [
+                        'street' => [
+                            0 => '139 The Esplanade',
                         ],
-                    'bacs' =>
-                        [
-                            'account' => 'account',
-                            'sort_code' => 'sort_code',
-                        ],
+                        'city' => 'Weymouth',
+                        'postal_code' => 'DT4 7NR',
+                        'country' => 'GB',
+                    ],
+                    'bacs' => [
+                        'account' => 'account',
+                        'sort_code' => 'sort_code',
+                    ],
                 ]
             )
             ->andReturn(new Response($psrResponse));
@@ -179,7 +170,7 @@ class PaymentsTest extends TestCase
         );
     }
 
-    public function testGetPayment(): void
+    public function test_get_payment(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -196,7 +187,7 @@ class PaymentsTest extends TestCase
         $obj->get('pmt_1234');
     }
 
-    public function testGetRecipient(): void
+    public function test_get_recipient(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -213,7 +204,7 @@ class PaymentsTest extends TestCase
         $obj->getRecipient('rcp_1234');
     }
 
-    public function testListPayments(): void
+    public function test_list_payments(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -221,7 +212,7 @@ class PaymentsTest extends TestCase
                 [
                     'client_id' => 'id',
                     'secret' => 'secret',
-                    'options' => (object)[],
+                    'options' => (object) [],
                 ]
             )
             ->andReturn(new Response($psrResponse));
@@ -230,7 +221,7 @@ class PaymentsTest extends TestCase
         $obj->list();
     }
 
-    public function testListRecipients(): void
+    public function test_list_recipients(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')

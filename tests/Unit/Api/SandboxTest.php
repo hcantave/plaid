@@ -3,12 +3,10 @@
 namespace Abivia\Plaid\Tests\Unit\Api;
 
 use Abivia\Plaid\Api\Sandbox;
-use Abivia\Plaid\Plaid as PlaidCore;
 use Abivia\Plaid\Tests\TestCase;
 use GuzzleHttp\Psr7\Response as PsrResponse;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
-
 
 /**
  * @covers \Abivia\Plaid\Plaid
@@ -17,7 +15,7 @@ use Illuminate\Support\Facades\Http;
  */
 class SandboxTest extends TestCase
 {
-    public function testCreatePublicToken(): void
+    public function test_create_public_token(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -26,14 +24,12 @@ class SandboxTest extends TestCase
                     'client_id' => 'id',
                     'secret' => 'secret',
                     'institution_id' => 'institution_id',
-                    'initial_products' =>
-                        [
-                            0 => 'product1',
-                            1 => 'product2',
-                        ],
-                    'options' =>
-                        (object)[
-                        ],
+                    'initial_products' => [
+                        0 => 'product1',
+                        1 => 'product2',
+                    ],
+                    'options' => (object) [
+                    ],
                 ]
             )
             ->andReturn(new Response($psrResponse));
@@ -45,7 +41,7 @@ class SandboxTest extends TestCase
         );
     }
 
-    public function testFireWebhook(): void
+    public function test_fire_webhook(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -63,7 +59,7 @@ class SandboxTest extends TestCase
         $obj->fireWebhook('access_token');
     }
 
-    public function testResetLogin(): void
+    public function test_reset_login(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -80,7 +76,7 @@ class SandboxTest extends TestCase
         $obj->resetLogin('access_token');
     }
 
-    public function testSetVerificationStatus(): void
+    public function test_set_verification_status(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -103,7 +99,7 @@ class SandboxTest extends TestCase
         );
     }
 
-    public function testSimulateBankTransfer(): void
+    public function test_simulate_bank_transfer(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -113,11 +109,10 @@ class SandboxTest extends TestCase
                     'secret' => 'secret',
                     'bank_transfer_id' => 'bank_transfer_id',
                     'event_type' => 'event_type',
-                    'failure_reason' =>
-                        [
-                            'ach_return_code' => 'ach_return_code',
-                            'description' => 'failure_description',
-                        ],
+                    'failure_reason' => [
+                        'ach_return_code' => 'ach_return_code',
+                        'description' => 'failure_description',
+                    ],
                 ]
             )
             ->andReturn(new Response($psrResponse));

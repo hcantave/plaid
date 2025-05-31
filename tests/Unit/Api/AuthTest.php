@@ -3,12 +3,10 @@
 namespace Abivia\Plaid\Tests\Unit\Api;
 
 use Abivia\Plaid\Api\Auth;
-use Abivia\Plaid\Plaid as PlaidCore;
 use Abivia\Plaid\Tests\TestCase;
 use GuzzleHttp\Psr7\Response as PsrResponse;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
-
 
 /**
  * @covers \Abivia\Plaid\Plaid
@@ -17,7 +15,7 @@ use Illuminate\Support\Facades\Http;
  */
 class AuthTest extends TestCase
 {
-    public function testGetAuth(): void
+    public function test_get_auth(): void
     {
         $psrResponse = new PsrResponse(200, [], '{}');
         Http::shouldReceive('post')
@@ -26,7 +24,7 @@ class AuthTest extends TestCase
                     'client_id' => 'id',
                     'secret' => 'secret',
                     'access_token' => 'access_token',
-                    'options' => (object)[],
+                    'options' => (object) [],
                 ]
             )
             ->andReturn(new Response($psrResponse));

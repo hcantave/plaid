@@ -10,12 +10,11 @@ class CaseMapper
     /**
      * Wrap an object in the case mapper.
      *
-     * @param object $data
      * @return CaseMapper
      */
     public static function map(object $data): object
     {
-        $mapped = new stdClass();
+        $mapped = new stdClass;
         foreach ($data as $key => $value) {
             $key = Str::camel($key);
             if (is_object($value)) {
@@ -46,5 +45,4 @@ class CaseMapper
 
         return $result;
     }
-
 }

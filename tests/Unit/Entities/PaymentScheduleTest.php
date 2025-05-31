@@ -12,30 +12,30 @@ use InvalidArgumentException;
  */
 class PaymentScheduleTest extends TestCase
 {
-	public function test_get_properties(): void
-	{
-		$paymentSchedule = new PaymentSchedule(
-			PaymentSchedule::INTERVAL_MONTHLY,
-			15,
-			new Carbon('2020-10-01')
-		);
+    public function test_get_properties(): void
+    {
+        $paymentSchedule = new PaymentSchedule(
+            PaymentSchedule::INTERVAL_MONTHLY,
+            15,
+            new Carbon('2020-10-01')
+        );
 
-		$this->assertEquals(
-			'MONTHLY',
-			$paymentSchedule->getInterval()
-		);
+        $this->assertEquals(
+            'MONTHLY',
+            $paymentSchedule->getInterval()
+        );
 
-		$this->assertEquals(15, $paymentSchedule->getIntervalExecutionDay());
+        $this->assertEquals(15, $paymentSchedule->getIntervalExecutionDay());
 
-		$this->assertEquals(
-			'2020-10-01',
-			$paymentSchedule->getStartDate()->format('Y-m-d')
-		);
-	}
+        $this->assertEquals(
+            '2020-10-01',
+            $paymentSchedule->getStartDate()->format('Y-m-d')
+        );
+    }
 
-	public function testInvalidIntervalThrowsInvalidArgumentException(): void
-	{
-		$this->expectException(InvalidArgumentException::class);
-		new PaymentSchedule('YEARLY', 1, new Carbon('2020-01-01'));
-	}
+    public function test_invalid_interval_throws_invalid_argument_exception(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        new PaymentSchedule('YEARLY', 1, new Carbon('2020-01-01'));
+    }
 }

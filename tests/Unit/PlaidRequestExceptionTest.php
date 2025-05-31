@@ -4,19 +4,17 @@ namespace Abivia\Plaid\Tests\Unit;
 
 use Abivia\Plaid\PlaidRequestException;
 use Abivia\Plaid\Tests\TestCase;
-use Abivia\Plaid\Plaid as PlaidCore;
 use GuzzleHttp\Psr7\Response as PsrResponse;
 use Illuminate\Http\Client\Response;
-use Illuminate\Support\Facades\Http;
-
 
 /**
  * @covers \Abivia\Plaid\PlaidRequestException
+ *
  * @uses   \Abivia\Plaid\PlaidException
  */
 class PlaidRequestExceptionTest extends TestCase
 {
-    public function testGettingCodeFromException(): void
+    public function test_getting_code_from_exception(): void
     {
         $response = new Response(
             new PsrResponse(404, [], '{"display_message": "Foo not found"}')
@@ -26,7 +24,7 @@ class PlaidRequestExceptionTest extends TestCase
         $this->assertEquals(404, $plaidRequestException->getCode());
     }
 
-    public function testGettingDisplayMessageOnException(): void
+    public function test_getting_display_message_on_exception(): void
     {
         $response = new Response(
             new PsrResponse(404, [], '{"display_message": "Foo not found"}')
@@ -36,7 +34,7 @@ class PlaidRequestExceptionTest extends TestCase
         $this->assertEquals('Foo not found', $plaidRequestException->getMessage());
     }
 
-    public function testGettingFallbackMessage(): void
+    public function test_getting_fallback_message(): void
     {
         $response = new Response(new PsrResponse(404));
         $plaidRequestException = new PlaidRequestException($response);
@@ -44,7 +42,7 @@ class PlaidRequestExceptionTest extends TestCase
         $this->assertEquals('HTTP error 404', $plaidRequestException->getMessage());
     }
 
-    public function testGettingPayloadFromException(): void
+    public function test_getting_payload_from_exception(): void
     {
         $response = new Response(
             new PsrResponse(404, [], '{"display_message": "Foo not found"}')
@@ -52,7 +50,7 @@ class PlaidRequestExceptionTest extends TestCase
         $plaidRequestException = new PlaidRequestException($response);
 
         $this->assertEquals(
-            (object)['display_message' => 'Foo not found'],
+            (object) ['display_message' => 'Foo not found'],
             $plaidRequestException->getBody()
         );
     }

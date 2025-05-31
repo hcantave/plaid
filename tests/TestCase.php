@@ -15,7 +15,7 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
     {
         Http::shouldReceive('withHeaders')
             ->once()
-            ->with(['Plaid-Version' => Plaid::API_VERSION,])
+            ->with(['Plaid-Version' => Plaid::API_VERSION])
             ->andReturnSelf();
     }
 
@@ -33,7 +33,7 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
         ];
     }
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
         // additional setup

@@ -9,21 +9,20 @@ class Auth extends AbstractResource
     /**
      * Get Auth request.
      *
-     * @param string $accessToken
-     * @param array<string,mixed> $options
-     * @return Auth
+     * @param  array<string,mixed>  $options
+     *
      * @throws PlaidRequestException
      */
-	public function get(string $accessToken, array $options = []): self
-	{
+    public function get(string $accessToken, array $options = []): self
+    {
         $this->sendRequest(
             'auth/get',
             [
                 'access_token' => $accessToken,
-                'options' => (object) $options
+                'options' => (object) $options,
             ]
         );
 
         return $this;
-	}
+    }
 }

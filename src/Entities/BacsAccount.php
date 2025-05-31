@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Abivia\Plaid\Entities;
@@ -25,8 +26,7 @@ class BacsAccount
     {
         return [
             'account' => $this->account,
-            'sort_code' => $this->sortCode
+            'sort_code' => $this->sortCode,
         ];
     }
-
 }

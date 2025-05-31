@@ -4,11 +4,10 @@ namespace Abivia\Plaid\Tests\Unit\Api;
 
 use Abivia\Plaid\Api\BankTransfers;
 use Abivia\Plaid\Entities\AccountHolder;
-use Abivia\Plaid\Plaid as PlaidCore;
 use Abivia\Plaid\Tests\TestCase;
-use Illuminate\Support\Carbon;
 use GuzzleHttp\Psr7\Response as PsrResponse;
 use Illuminate\Http\Client\Response;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Http;
 
 /**
@@ -19,7 +18,7 @@ use Illuminate\Support\Facades\Http;
  */
 class BankTransfersTest extends TestCase
 {
-    public function testCancelBankTransfer(): void
+    public function test_cancel_bank_transfer(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -35,7 +34,7 @@ class BankTransfersTest extends TestCase
         $obj->cancel('bank_transfer_id');
     }
 
-    public function testCreateBankTransfer(): void
+    public function test_create_bank_transfer(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -51,15 +50,13 @@ class BankTransfersTest extends TestCase
                     'amount' => '10.00',
                     'iso_currency_code' => 'USD',
                     'description' => 'descript',
-                    'user' =>
-                        [
-                            'legal_name' => 'Test Name',
-                            'email' => 'test@example.com',
-                        ],
-                    'metadata' =>
-                        (object)[
-                            'meta1' => 'value1',
-                        ],
+                    'user' => [
+                        'legal_name' => 'Test Name',
+                        'email' => 'test@example.com',
+                    ],
+                    'metadata' => (object) [
+                        'meta1' => 'value1',
+                    ],
                     'ach_class' => 'ach_class',
                     'custom_tag' => 'custom_tag',
                     'origination_account_id' => 'origination_account_id',
@@ -85,7 +82,7 @@ class BankTransfersTest extends TestCase
         );
     }
 
-    public function testGetAccountBalance(): void
+    public function test_get_account_balance(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -102,7 +99,7 @@ class BankTransfersTest extends TestCase
         $obj->getOriginationAccountBalance('origination_account_id');
     }
 
-    public function testGetEventList(): void
+    public function test_get_event_list(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -115,10 +112,9 @@ class BankTransfersTest extends TestCase
                     'bank_transfer_id' => 'bank_transfer_id',
                     'account_id' => 'account_id',
                     'bank_transfer_type' => 'bank_transfer_type',
-                    'event_type' =>
-                        [
-                            0 => 'type1',
-                        ],
+                    'event_type' => [
+                        0 => 'type1',
+                    ],
                     'count' => 100,
                     'offset' => 500,
                     'direction' => 'asc',
@@ -142,7 +138,7 @@ class BankTransfersTest extends TestCase
         );
     }
 
-    public function testListBankTransfers(): void
+    public function test_list_bank_transfers(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -171,7 +167,7 @@ class BankTransfersTest extends TestCase
         );
     }
 
-    public function testMigrateAccount(): void
+    public function test_migrate_account(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -194,7 +190,7 @@ class BankTransfersTest extends TestCase
         );
     }
 
-    public function testSyncEvents(): void
+    public function test_sync_events(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')

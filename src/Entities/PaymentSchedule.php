@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Abivia\Plaid\Entities;
@@ -9,6 +10,7 @@ use InvalidArgumentException;
 class PaymentSchedule
 {
     const INTERVAL_WEEKLY = 'WEEKLY';
+
     const INTERVAL_MONTHLY = 'MONTHLY';
 
     /**
@@ -27,18 +29,17 @@ class PaymentSchedule
     protected Carbon $startDate;
 
     /**
-     * @param string $interval You can use the class constants PaymentSchedule::WEEKLY and PaymentScheduler::MONTHLY.
-     * @param integer $intervalExecutionDay
-     * @param Carbon $startDate
+     * @param  string  $interval  You can use the class constants PaymentSchedule::WEEKLY and PaymentScheduler::MONTHLY.
+     *
      * @throws InvalidArgumentException
      */
     public function __construct(
-        string   $interval,
-        int      $intervalExecutionDay,
+        string $interval,
+        int $intervalExecutionDay,
         Carbon $startDate)
     {
         $interval = strtoupper($interval);
-        if (!\in_array($interval, [self::INTERVAL_MONTHLY, self::INTERVAL_WEEKLY])) {
+        if (! \in_array($interval, [self::INTERVAL_MONTHLY, self::INTERVAL_WEEKLY])) {
             throw new InvalidArgumentException('Interval must be WEEKLY or MONTHLY.');
         }
 
@@ -49,8 +50,6 @@ class PaymentSchedule
 
     /**
      * Get the payment schedule interval.
-     *
-     * @return string
      */
     public function getInterval(): string
     {
@@ -59,8 +58,6 @@ class PaymentSchedule
 
     /**
      * Get the interval execution day.
-     *
-     * @return integer
      */
     public function getIntervalExecutionDay(): int
     {
@@ -69,8 +66,6 @@ class PaymentSchedule
 
     /**
      * Get the start date of the scheduled payment.
-     *
-     * @return Carbon
      */
     public function getStartDate(): Carbon
     {

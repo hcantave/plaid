@@ -5,7 +5,6 @@ namespace Abivia\Plaid\Tests\Unit\Api;
 use Abivia\Plaid\Api\Tokens;
 use Abivia\Plaid\Entities\AccountFilters;
 use Abivia\Plaid\Entities\User;
-use Abivia\Plaid\Plaid as PlaidCore;
 use Abivia\Plaid\Tests\TestCase;
 use GuzzleHttp\Psr7\Response as PsrResponse;
 use Illuminate\Http\Client\Response;
@@ -20,7 +19,7 @@ use Illuminate\Support\Facades\Http;
  */
 class TokensTest extends TestCase
 {
-    public function testAccessToken(): void
+    public function test_access_token(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -30,17 +29,14 @@ class TokensTest extends TestCase
                     'secret' => 'secret',
                     'client_name' => 'client_name',
                     'language' => 'en',
-                    'country_codes' =>
-                        [
-                            0 => 'US',
-                        ],
-                    'user' =>
-                        [
-                            'client_user_id' => 'usr_12345',
-                        ],
-                    'products' =>
-                        [
-                        ],
+                    'country_codes' => [
+                        0 => 'US',
+                    ],
+                    'user' => [
+                        'client_user_id' => 'usr_12345',
+                    ],
+                    'products' => [
+                    ],
                     'access_token' => 'access_token',
                 ]
             )
@@ -60,7 +56,7 @@ class TokensTest extends TestCase
         );
     }
 
-    public function testAccountFilters(): void
+    public function test_account_filters(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -70,28 +66,22 @@ class TokensTest extends TestCase
                     'secret' => 'secret',
                     'client_name' => 'client_name',
                     'language' => 'en',
-                    'country_codes' =>
-                        [
-                            0 => 'US',
+                    'country_codes' => [
+                        0 => 'US',
+                    ],
+                    'user' => [
+                        'client_user_id' => 'usr_12345',
+                    ],
+                    'products' => [
+                    ],
+                    'account_filters' => [
+                        'depository' => [
+                            'account_subtypes' => [
+                                0 => 'auth',
+                                1 => 'transactions',
+                            ],
                         ],
-                    'user' =>
-                        [
-                            'client_user_id' => 'usr_12345',
-                        ],
-                    'products' =>
-                        [
-                        ],
-                    'account_filters' =>
-                        [
-                            'depository' =>
-                                [
-                                    'account_subtypes' =>
-                                        [
-                                            0 => 'auth',
-                                            1 => 'transactions',
-                                        ],
-                                ],
-                        ],
+                    ],
                 ]
             )
             ->andReturn(new Response($psrResponse));
@@ -109,7 +99,7 @@ class TokensTest extends TestCase
         );
     }
 
-    public function testAndroidPackageName(): void
+    public function test_android_package_name(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -119,17 +109,14 @@ class TokensTest extends TestCase
                     'secret' => 'secret',
                     'client_name' => 'client_name',
                     'language' => 'en',
-                    'country_codes' =>
-                        [
-                            0 => 'US',
-                        ],
-                    'user' =>
-                        [
-                            'client_user_id' => 'usr_12345',
-                        ],
-                    'products' =>
-                        [
-                        ],
+                    'country_codes' => [
+                        0 => 'US',
+                    ],
+                    'user' => [
+                        'client_user_id' => 'usr_12345',
+                    ],
+                    'products' => [
+                    ],
                     'android_package_name' => 'android_package_name',
                 ]
             )
@@ -151,7 +138,7 @@ class TokensTest extends TestCase
         );
     }
 
-    public function testInstitutionId(): void
+    public function test_institution_id(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -161,17 +148,14 @@ class TokensTest extends TestCase
                     'secret' => 'secret',
                     'client_name' => 'client_name',
                     'language' => 'en',
-                    'country_codes' =>
-                        [
-                            0 => 'US',
-                        ],
-                    'user' =>
-                        [
-                            'client_user_id' => 'usr_12345',
-                        ],
-                    'products' =>
-                        [
-                        ],
+                    'country_codes' => [
+                        0 => 'US',
+                    ],
+                    'user' => [
+                        'client_user_id' => 'usr_12345',
+                    ],
+                    'products' => [
+                    ],
                     'institution_id' => 'institution_id',
                 ]
             )
@@ -195,7 +179,7 @@ class TokensTest extends TestCase
         );
     }
 
-    public function testLinkCustomizationName(): void
+    public function test_link_customization_name(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -205,17 +189,14 @@ class TokensTest extends TestCase
                     'secret' => 'secret',
                     'client_name' => 'client_name',
                     'language' => 'en',
-                    'country_codes' =>
-                        [
-                            0 => 'US',
-                        ],
-                    'user' =>
-                        [
-                            'client_user_id' => 'usr_12345',
-                        ],
-                    'products' =>
-                        [
-                        ],
+                    'country_codes' => [
+                        0 => 'US',
+                    ],
+                    'user' => [
+                        'client_user_id' => 'usr_12345',
+                    ],
+                    'products' => [
+                    ],
                     'link_customization_name' => 'link customization name',
                 ]
             )
@@ -233,7 +214,7 @@ class TokensTest extends TestCase
         );
     }
 
-    public function testPaymentId(): void
+    public function test_payment_id(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -243,21 +224,17 @@ class TokensTest extends TestCase
                     'secret' => 'secret',
                     'client_name' => 'client_name',
                     'language' => 'en',
-                    'country_codes' =>
-                        [
-                            0 => 'US',
-                        ],
-                    'user' =>
-                        [
-                            'client_user_id' => 'usr_12345',
-                        ],
-                    'products' =>
-                        [
-                        ],
-                    'payment_initiation' =>
-                        [
-                            'payment_id' => 'pmt_12345',
-                        ],
+                    'country_codes' => [
+                        0 => 'US',
+                    ],
+                    'user' => [
+                        'client_user_id' => 'usr_12345',
+                    ],
+                    'products' => [
+                    ],
+                    'payment_initiation' => [
+                        'payment_id' => 'pmt_12345',
+                    ],
                 ]
             )
             ->andReturn(new Response($psrResponse));
@@ -279,7 +256,7 @@ class TokensTest extends TestCase
         );
     }
 
-    public function testRedirectUri(): void
+    public function test_redirect_uri(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -289,17 +266,14 @@ class TokensTest extends TestCase
                     'secret' => 'secret',
                     'client_name' => 'client_name',
                     'language' => 'en',
-                    'country_codes' =>
-                        [
-                            0 => 'US',
-                        ],
-                    'user' =>
-                        [
-                            'client_user_id' => 'usr_12345',
-                        ],
-                    'products' =>
-                        [
-                        ],
+                    'country_codes' => [
+                        0 => 'US',
+                    ],
+                    'user' => [
+                        'client_user_id' => 'usr_12345',
+                    ],
+                    'products' => [
+                    ],
                     'redirect_uri' => 'http://redirect.uri',
                 ]
             )
@@ -320,7 +294,7 @@ class TokensTest extends TestCase
         );
     }
 
-    public function testRequiredParameters(): void
+    public function test_required_parameters(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -330,19 +304,16 @@ class TokensTest extends TestCase
                     'secret' => 'secret',
                     'client_name' => 'client_name',
                     'language' => 'en',
-                    'country_codes' =>
-                        [
-                            0 => 'US',
-                        ],
-                    'user' =>
-                        [
-                            'client_user_id' => 'usr_12345',
-                        ],
-                    'products' =>
-                        [
-                            0 => 'transactions',
-                            1 => 'auth',
-                        ],
+                    'country_codes' => [
+                        0 => 'US',
+                    ],
+                    'user' => [
+                        'client_user_id' => 'usr_12345',
+                    ],
+                    'products' => [
+                        0 => 'transactions',
+                        1 => 'auth',
+                    ],
                 ]
             )
             ->andReturn(new Response($psrResponse));
@@ -357,7 +328,7 @@ class TokensTest extends TestCase
         );
     }
 
-    public function testWebhook(): void
+    public function test_webhook(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -367,17 +338,14 @@ class TokensTest extends TestCase
                     'secret' => 'secret',
                     'client_name' => 'client_name',
                     'language' => 'en',
-                    'country_codes' =>
-                        [
-                            0 => 'US',
-                        ],
-                    'user' =>
-                        [
-                            'client_user_id' => 'usr_12345',
-                        ],
-                    'products' =>
-                        [
-                        ],
+                    'country_codes' => [
+                        0 => 'US',
+                    ],
+                    'user' => [
+                        'client_user_id' => 'usr_12345',
+                    ],
+                    'products' => [
+                    ],
                     'webhook' => 'http://webhook.url',
                 ]
             )
@@ -394,7 +362,7 @@ class TokensTest extends TestCase
         );
     }
 
-    public function testGetToken(): void
+    public function test_get_token(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')

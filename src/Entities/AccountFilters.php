@@ -7,7 +7,7 @@ class AccountFilters
     /**
      * AccountFilters constructor.
      *
-     * @param array<string,array<string>> $filters
+     * @param  array<string,array<string>>  $filters
      */
     public function __construct(protected array $filters = [])
     {
@@ -19,9 +19,7 @@ class AccountFilters
     /**
      * Set filters for the given type.
      *
-     * @param string $type
-     * @param array<string> $subtypes
-     * @return void
+     * @param  array<string>  $subtypes
      */
     protected function setFilter(string $type, array $subtypes): void
     {
@@ -43,8 +41,7 @@ class AccountFilters
      *	assets
      *	all
      *
-     * @param array<string> $subtypes
-     * @return void
+     * @param  array<string>  $subtypes
      */
     public function setDepositoryFilters(array $subtypes): void
     {
@@ -60,8 +57,7 @@ class AccountFilters
      * 	liabilities
      *	all
      *
-     * @param array<string> $subtypes
-     * @return void
+     * @param  array<string>  $subtypes
      */
     public function setCreditFilters(array $subtypes): void
     {
@@ -75,8 +71,7 @@ class AccountFilters
      * 	investment
      * 	all
      *
-     * @param array<string> $subtypes
-     * @return void
+     * @param  array<string>  $subtypes
      */
     public function setInvestmentFilters(array $subtypes): void
     {
@@ -91,8 +86,7 @@ class AccountFilters
      * 	liabilities
      * 	all
      *
-     * @param array<string> $subtypes
-     * @return void
+     * @param  array<string>  $subtypes
      */
     public function setLoanFilters(array $subtypes): void
     {
@@ -109,8 +103,7 @@ class AccountFilters
      * 	assets
      *	all
      *
-     * @param array<string> $subtypes
-     * @return void
+     * @param  array<string>  $subtypes
      */
     public function setOtherFilters(array $subtypes): void
     {

@@ -2,9 +2,10 @@
 
 namespace Abivia\Plaid\Api;
 
-use Illuminate\Support\Carbon;
 use Abivia\Plaid\Entities\AccountHolder;
 use Abivia\Plaid\PlaidRequestException;
+use Illuminate\Support\Carbon;
+
 use function substr;
 
 class BankTransfers extends AbstractResource
@@ -12,8 +13,6 @@ class BankTransfers extends AbstractResource
     /**
      * Cancel a bank transfer.
      *
-     * @param string $bankTransferId
-     * @return BankTransfers
      * @throws PlaidRequestException
      */
     public function cancel(string $bankTransferId): self
@@ -28,21 +27,8 @@ class BankTransfers extends AbstractResource
     /**
      * Create a new bank transfer.
      *
-     * @param string $accessToken
-     * @param string $idempotencyKey
-     * @param string $type
-     * @param string $accountId
-     * @param string $network
-     * @param string $amount
-     * @param string $currencyCode
-     * @param AccountHolder $accountHolder
-     * @param string $description
-     * @param string|null $achClass
-     * @param string|null $customTag
-     * @param array $metadata
-     * @param string|null $originationAccountId
-     * @return BankTransfers
      * @throws PlaidRequestException
+     *
      * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      */
     public function create(
@@ -55,12 +41,11 @@ class BankTransfers extends AbstractResource
         string $currencyCode,
         AccountHolder $accountHolder,
         string $description,
-        string $achClass = null,
-        string $customTag = null,
+        ?string $achClass = null,
+        ?string $customTag = null,
         array $metadata = [],
-        string $originationAccountId = null
-    ): self
-    {
+        ?string $originationAccountId = null
+    ): self {
         $params = [
             'access_token' => $accessToken,
             'idempotency_key' => $idempotencyKey,
@@ -71,7 +56,7 @@ class BankTransfers extends AbstractResource
             'iso_currency_code' => $currencyCode,
             'description' => substr($description, 0, 8),
             'user' => $accountHolder->toArray(),
-            'metadata' => $metadata ? (object)$metadata : null
+            'metadata' => $metadata ? (object) $metadata : null,
         ];
 
         if ($achClass) {
@@ -94,8 +79,6 @@ class BankTransfers extends AbstractResource
     /**
      * Get details about a bank transfer.
      *
-     * @param string $bankTransferId
-     * @return BankTransfers
      * @throws PlaidRequestException
      */
     public function get(string $bankTransferId): self
@@ -111,11 +94,9 @@ class BankTransfers extends AbstractResource
     /**
      * Get the origination account balance.
      *
-     * @param string|null $originationAccountId
-     * @return BankTransfers
      * @throws PlaidRequestException
      */
-    public function getOriginationAccountBalance(string $originationAccountId = null): self
+    public function getOriginationAccountBalance(?string $originationAccountId = null): self
     {
         $params = [];
 
@@ -130,13 +111,6 @@ class BankTransfers extends AbstractResource
     /**
      * Get list of bank transfers.
      *
-     * @param Carbon|null $startDate
-     * @param Carbon|null $endDate
-     * @param integer|null $count
-     * @param integer|null $offset
-     * @param string|null $direction
-     * @param string|null $originationAccountId
-     * @return BankTransfers
      * @throws PlaidRequestException
      */
     public function list(
@@ -146,8 +120,7 @@ class BankTransfers extends AbstractResource
         ?int $offset = null,
         ?string $direction = null,
         ?string $originationAccountId = null
-    ): self
-    {
+    ): self {
         $params = [];
         if ($startDate) {
             $params['start_date'] = $startDate->format('c');
@@ -176,18 +149,10 @@ class BankTransfers extends AbstractResource
     /**
      * Get list of bank transfer events.
      *
-     * @param Carbon|null $startDate
-     * @param Carbon|null $endDate
-     * @param string|null $bankTransferId
-     * @param string|null $accountId
-     * @param string|null $bankTransferType
-     * @param array<string> $eventType
-     * @param integer|null $count
-     * @param integer|null $offset
-     * @param string|null $direction
-     * @param string|null $originationAccountId
-     * @return BankTransfers
+     * @param  array<string>  $eventType
+     *
      * @throws PlaidRequestException
+     *
      * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      */
     public function listEvents(
@@ -201,8 +166,7 @@ class BankTransfers extends AbstractResource
         ?int $offset = null,
         ?string $direction = null,
         ?string $originationAccountId = null
-    ): self
-    {
+    ): self {
         static $argMap = [
             'accountId' => 'account_id',
             'bankTransferId' => 'bank_transfer_id',
@@ -232,14 +196,9 @@ class BankTransfers extends AbstractResource
         return $this;
     }
 
-
     /**
      * Migrate an account.
      *
-     * @param string $accountNumber
-     * @param string $routingNumber
-     * @param string $accountType
-     * @return BankTransfers
      * @throws PlaidRequestException
      */
     public function migrateAccount(
@@ -252,26 +211,22 @@ class BankTransfers extends AbstractResource
             [
                 'account_number' => $accountNumber,
                 'routing_number' => $routingNumber,
-                'account_type' => $accountType
+                'account_type' => $accountType,
             ]
         );
 
         return $this;
     }
 
-
     /**
      * Sync bank transfer events.
      *
-     * @param string $afterId
-     * @param integer|null $count
-     * @return BankTransfers
      * @throws PlaidRequestException
      */
     public function syncEvents(string $afterId, ?int $count = null): self
     {
         $params = [
-            'after_id' => $afterId
+            'after_id' => $afterId,
         ];
 
         if ($count) {

@@ -2,19 +2,16 @@
 
 namespace Abivia\Plaid\Api;
 
-use Illuminate\Support\Carbon;
 use Abivia\Plaid\PlaidRequestException;
+use Illuminate\Support\Carbon;
 
 class Transactions extends AbstractResource
 {
     /**
      * Get all transactions for a particular Account.
      *
-     * @param string $accessToken
-     * @param Carbon $startDate
-     * @param Carbon $endDate
-     * @param array<string,mixed> $options
-     * @return Transactions
+     * @param  array<string,mixed>  $options
+     *
      * @throws PlaidRequestException
      */
     public function list(
@@ -22,15 +19,14 @@ class Transactions extends AbstractResource
         Carbon $startDate,
         Carbon $endDate,
         array $options = []
-    ): self
-    {
+    ): self {
         $this->sendRequest(
             'transactions/get',
             [
                 'access_token' => $accessToken,
                 'start_date' => $startDate->format('Y-m-d'),
                 'end_date' => $endDate->format('Y-m-d'),
-                'options' => (object)$options
+                'options' => (object) $options,
             ]
         );
 
@@ -40,8 +36,6 @@ class Transactions extends AbstractResource
     /**
      * Refresh transactions for a particular Account.
      *
-     * @param string $accessToken
-     * @return Transactions
      * @throws PlaidRequestException
      */
     public function refresh(string $accessToken): self
@@ -50,5 +44,4 @@ class Transactions extends AbstractResource
 
         return $this;
     }
-
 }

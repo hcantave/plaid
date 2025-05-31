@@ -3,12 +3,10 @@
 namespace Abivia\Plaid\Tests\Unit\Api;
 
 use Abivia\Plaid\Api\Webhooks;
-use Abivia\Plaid\Plaid as PlaidCore;
 use Abivia\Plaid\Tests\TestCase;
 use GuzzleHttp\Psr7\Response as PsrResponse;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
-
 
 /**
  * @covers \Abivia\Plaid\Plaid
@@ -17,7 +15,7 @@ use Illuminate\Support\Facades\Http;
  */
 class WebhooksTest extends TestCase
 {
-    public function testGetVerificationKey(): void
+    public function test_get_verification_key(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -34,7 +32,7 @@ class WebhooksTest extends TestCase
         $obj->getVerificationKey('key_id');
     }
 
-    public function testUpdateWebhook(): void
+    public function test_update_webhook(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')

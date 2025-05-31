@@ -3,7 +3,6 @@
 namespace Abivia\Plaid\Tests\Unit\Api;
 
 use Abivia\Plaid\Api\Items;
-use Abivia\Plaid\Plaid as PlaidCore;
 use Abivia\Plaid\Tests\TestCase;
 use GuzzleHttp\Psr7\Response as PsrResponse;
 use Illuminate\Http\Client\Response;
@@ -16,7 +15,7 @@ use Illuminate\Support\Facades\Http;
  */
 class ItemsTest extends TestCase
 {
-    public function testCreatePublicToken(): void
+    public function test_create_public_token(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -33,7 +32,7 @@ class ItemsTest extends TestCase
         $obj->createPublicToken('access_token');
     }
 
-    public function testExchangeToken(): void
+    public function test_exchange_token(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -50,7 +49,7 @@ class ItemsTest extends TestCase
         $obj->exchangeToken('public_token');
     }
 
-    public function testGetIncome(): void
+    public function test_get_income(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -67,7 +66,7 @@ class ItemsTest extends TestCase
         $obj->getIncome('access_token');
     }
 
-    public function testGetItems(): void
+    public function test_get_items(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -84,7 +83,7 @@ class ItemsTest extends TestCase
         $obj->get('access_token');
     }
 
-    public function testRemoveItem(): void
+    public function test_remove_item(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -101,7 +100,7 @@ class ItemsTest extends TestCase
         $obj->remove('access_token');
     }
 
-    public function testRotateAccessToken(): void
+    public function test_rotate_access_token(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')

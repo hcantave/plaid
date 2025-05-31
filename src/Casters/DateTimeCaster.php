@@ -14,6 +14,6 @@ class DateTimeCaster implements Cast
      */
     public function cast(DataProperty $property, mixed $value, array $properties): DateTime
     {
-            return new DateTime($value);
-        }
+        return new DateTime($value);
     }
+}

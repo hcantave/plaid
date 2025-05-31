@@ -2,6 +2,7 @@
 
 namespace Hcantave\Plaid\Client;
 
+use DateTime;
 use Hcantave\Plaid\Resources\AccessTokenResource;
 use Hcantave\Plaid\Resources\AccountsResource;
 use Hcantave\Plaid\Resources\InstitutionCollectionResource;
@@ -14,14 +15,13 @@ use Hcantave\Plaid\Resources\PublicTokenResource;
 use Hcantave\Plaid\Resources\ResetItemResource;
 use Hcantave\Plaid\Resources\TransactionsResource;
 use Hcantave\Plaid\Resources\WebhookFiredResource;
-use DateTime;
 use Illuminate\Http\Client\RequestException;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Log;
 use InvalidArgumentException;
 use RuntimeException;
 use Spatie\LaravelData\Exceptions\InvalidDataClass;
+
 use function config;
 
 class Factory
@@ -29,12 +29,13 @@ class Factory
     public const API_VERSION = '2020-09-14';
 
     protected array $plaidEnvironments = [
-        'sandbox'    => 'https://sandbox.plaid.com',
-        'development'=> 'https://development.plaid.com',
+        'sandbox' => 'https://sandbox.plaid.com',
+        'development' => 'https://development.plaid.com',
         'production' => 'https://production.plaid.com',
     ];
 
     protected readonly string $hostname;
+
     protected readonly array $headers;
 
     protected array $products;
@@ -68,9 +69,6 @@ class Factory
     /**
      * Send a request and return the response.
      *
-     * @param string $endpoint
-     * @param array $body
-     * @return Response
      * @throws RequestException
      */
     private function sendRequest(string $endpoint, array $body): Response
@@ -86,8 +84,6 @@ class Factory
      *
      * @link https://plaid.com/docs/api/items/#itemget
      *
-     * @param string $accessToken
-     * @return ItemResource
      * @throws RequestException
      * @throws InvalidDataClass
      */
@@ -107,8 +103,6 @@ class Factory
      *
      * @link https://plaid.com/docs/api/items/#itemremove
      *
-     * @param string $accessToken
-     * @return ItemRemoveResource
      * @throws RequestException
      * @throws InvalidDataClass
      */
@@ -124,9 +118,6 @@ class Factory
      *
      * @link https://plaid.com/docs/api/items/#itemwebhookupdate
      *
-     * @param string $accessToken
-     * @param string $webhook
-     * @return ItemResource
      * @throws RequestException
      * @throws InvalidDataClass
      */
@@ -145,10 +136,6 @@ class Factory
      *
      * @link https://plaid.com/docs/api/institutions/#institutionsget
      *
-     * @param int $count
-     * @param int $offset
-     * @param array $options
-     * @return InstitutionCollectionResource
      * @throws RequestException
      * @throws InvalidDataClass
      */
@@ -180,9 +167,6 @@ class Factory
      *
      * @link https://plaid.com/docs/api/institutions/#institutionsget_by_id
      *
-     * @param string $institutionId
-     * @param array $options
-     * @return InstitutionResource
      * @throws RequestException
      * @throws InvalidDataClass
      */
@@ -206,9 +190,6 @@ class Factory
      *
      * @link https://plaid.com/docs/api/institutions/#institutionssearch
      *
-     * @param string $query
-     * @param array $options
-     * @return InstitutionCollectionResource
      * @throws RequestException
      * @throws InvalidDataClass
      */
@@ -231,8 +212,6 @@ class Factory
      *
      * @link https://plaid.com/docs/api/accounts/#accountsget
      *
-     * @param string $accessToken
-     * @return AccountsResource
      * @throws RequestException
      * @throws InvalidDataClass
      */
@@ -251,9 +230,6 @@ class Factory
      *
      * @link https://plaid.com/docs/api/tokens/#linktokencreate
      *
-     * @param string $userId
-     * @param array $options
-     * @return LinkTokenResource
      * @throws RequestException
      * @throws InvalidDataClass
      */
@@ -274,10 +250,6 @@ class Factory
      *
      * @link https://plaid.com/docs/api/tokens/#linktokencreate
      *
-     * @param string $userId
-     * @param string $accessToken
-     * @param array $options
-     * @return LinkTokenResource
      * @throws RequestException
      * @throws InvalidDataClass
      */
@@ -300,8 +272,6 @@ class Factory
      *
      * @link https://plaid.com/docs/api/tokens/#itempublic_tokenexchange
      *
-     * @param string $publicToken
-     * @return AccessTokenResource
      * @throws RequestException
      * @throws InvalidDataClass
      */
@@ -320,8 +290,6 @@ class Factory
      *
      * @link https://plaid.com/docs/api/tokens/#itemaccess_tokeninvalidate
      *
-     * @param string $accessToken
-     * @return NewAccessTokenResource
      * @throws RequestException
      * @throws InvalidDataClass
      */
@@ -335,10 +303,6 @@ class Factory
     /**
      * Fetch transactions between two dates.
      *
-     * @param string $accessToken
-     * @param DateTime $startDate
-     * @param DateTime $endDate
-     * @return TransactionsResource
      * @throws RequestException
      * @throws InvalidDataClass
      */
@@ -389,13 +353,10 @@ class Factory
      *
      * @link https://plaid.com/docs/api/sandbox/#sandboxpublic_tokencreate
      *
-     * @param string $institutionId
-     * @param array|null $options
-     * @return PublicTokenResource
      * @throws RequestException
      * @throws InvalidDataClass
      */
-    public function createPublicToken(string $institutionId, array $options = null): PublicTokenResource
+    public function createPublicToken(string $institutionId, ?array $options = null): PublicTokenResource
     {
         if ($this->environment !== 'sandbox') {
             throw new RuntimeException('method createPublicToken() only available in sandbox mode.');
@@ -413,8 +374,6 @@ class Factory
      *
      * @link https://plaid.com/docs/api/sandbox/#sandboxitemreset_login
      *
-     * @param string $accessToken
-     * @return ResetItemResource
      * @throws RequestException
      * @throws InvalidDataClass
      */
@@ -434,9 +393,6 @@ class Factory
      *
      * @link https://plaid.com/docs/api/sandbox/#sandboxitemfire_webhook
      *
-     * @param string $accessToken
-     * @param string $webhookCode
-     * @return WebhookFiredResource
      * @throws RequestException
      * @throws InvalidDataClass
      */
@@ -462,8 +418,6 @@ class Factory
     /**
      * Create an item for testing.
      *
-     * @param string $institution
-     * @return AccessTokenResource
      * @throws RequestException
      * @throws InvalidDataClass
      */

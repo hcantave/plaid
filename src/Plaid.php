@@ -2,28 +2,12 @@
 
 namespace Abivia\Plaid;
 
-use Abivia\Plaid\Api\Accounts;
-use Abivia\Plaid\Api\Auth;
-use Abivia\Plaid\Api\BankTransfers;
-use Abivia\Plaid\Api\Categories;
-use Abivia\Plaid\Api\Institutions;
-use Abivia\Plaid\Api\Investments;
-use Abivia\Plaid\Api\Items;
-use Abivia\Plaid\Api\Liabilities;
-use Abivia\Plaid\Api\Payments;
-use Abivia\Plaid\Api\Processors;
-use Abivia\Plaid\Api\Reports;
-use Abivia\Plaid\Api\Sandbox;
-use Abivia\Plaid\Api\Tokens;
-use Abivia\Plaid\Api\Transactions;
-use Abivia\Plaid\Api\Webhooks;
 use Abivia\Plaid\Api\AbstractResource;
+use Abivia\Plaid\Api\Sandbox;
 use UnexpectedValueException;
+
 use function class_exists;
 
-
-/**
- */
 class Plaid
 {
     const API_VERSION = '2020-09-14';
@@ -32,6 +16,7 @@ class Plaid
      * @var string Environment-specific target URL.
      */
     protected string $baseUrl;
+
     /**
      * @var string Plaid client Id.
      */
@@ -54,9 +39,8 @@ class Plaid
     ];
 
     /**
-     * @param ?string $clientId
-     * @param ?string $clientSecret
-     * @param ?string $environment Possible values: production, development, sandbox
+     * @param  ?string  $environment  Possible values: production, development, sandbox
+     *
      * @throws UnexpectedValueException
      */
     public function __construct(
@@ -72,17 +56,15 @@ class Plaid
     /**
      * Magic api factory.
      *
-     * @param string $resourceName
-     * @param array $args
-     * @return AbstractResource
      * @throws UnexpectedValueException
      */
     public function __call(string $resourceName, array $args): AbstractResource
     {
-        $resourceClass = __NAMESPACE__ . "\\Api\\$resourceName";
-        if (!class_exists($resourceClass)) {
+        $resourceClass = __NAMESPACE__."\\Api\\$resourceName";
+        if (! class_exists($resourceClass)) {
             throw new UnexpectedValueException("Unknown Plaid resource: {$resourceName}");
         }
+
         return new $resourceClass($this->clientId, $this->clientSecret, $this->baseUrl);
     }
 
@@ -109,7 +91,7 @@ class Plaid
         } else {
             throw new UnexpectedValueException(
                 'Invalid environment. Environment must be one of: '
-                . implode(',', array_keys(self::$plaidEnvironments)) . '.'
+                .implode(',', array_keys(self::$plaidEnvironments)).'.'
             );
         }
 
@@ -119,10 +101,10 @@ class Plaid
     public function secret(?string $clientSecret = null): self
     {
         if ($clientSecret === null) {
-            if (!isset($this->envString)) {
+            if (! isset($this->envString)) {
                 $this->environment();
             }
-            $envVar = 'PLAID_' . strtoupper($this->envString) . '_SECRET';
+            $envVar = 'PLAID_'.strtoupper($this->envString).'_SECRET';
             $this->clientSecret = env($envVar);
         } else {
             $this->clientSecret = $clientSecret;
@@ -130,5 +112,4 @@ class Plaid
 
         return $this;
     }
-
 }

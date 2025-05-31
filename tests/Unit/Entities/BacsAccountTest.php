@@ -1,4 +1,5 @@
 <?php
+
 namespace Abivia\Plaid\Tests\Unit\Entities;
 
 use Abivia\Plaid\Entities\BacsAccount;
@@ -9,16 +10,16 @@ use Abivia\Plaid\Tests\TestCase;
  */
 class BacsAccountTest extends TestCase
 {
-	public function testConstructorSetsAccountAndSortCode(): void
-	{
-		$bacsAccount = new BacsAccount('account', 'sort_code');
+    public function test_constructor_sets_account_and_sort_code(): void
+    {
+        $bacsAccount = new BacsAccount('account', 'sort_code');
 
-		$this->assertEquals(
-			[
-				'account' => 'account',
-				'sort_code' => 'sort_code'
-			],
-			$bacsAccount->toArray()
-		);
-	}
+        $this->assertEquals(
+            [
+                'account' => 'account',
+                'sort_code' => 'sort_code',
+            ],
+            $bacsAccount->toArray()
+        );
+    }
 }

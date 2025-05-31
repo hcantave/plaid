@@ -3,7 +3,6 @@
 namespace Abivia\Plaid\Tests\Unit\Api;
 
 use Abivia\Plaid\Api\Accounts;
-use Abivia\Plaid\Plaid as PlaidCore;
 use Abivia\Plaid\Tests\TestCase;
 use GuzzleHttp\Psr7\Response as PsrResponse;
 use Illuminate\Http\Client\Response;
@@ -17,7 +16,7 @@ use Mockery\MockInterface;
  */
 class AccountsTest extends TestCase
 {
-    public function testGetAccounts(): void
+    public function test_get_accounts(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         $this->mock(Response::class,
@@ -30,7 +29,7 @@ class AccountsTest extends TestCase
                 'client_id' => 'id',
                 'secret' => 'secret',
                 'access_token' => 'access_token',
-                'options' => (object)[]
+                'options' => (object) [],
             ])
             ->andReturn(new Response($psrResponse));
         $this->expectPlaidHeader();
@@ -38,7 +37,7 @@ class AccountsTest extends TestCase
         $obj->list('access_token');
     }
 
-    public function testGetBalance(): void
+    public function test_get_balance(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -46,7 +45,7 @@ class AccountsTest extends TestCase
                 'client_id' => 'id',
                 'secret' => 'secret',
                 'access_token' => 'access_token',
-                'options' => (object)[]
+                'options' => (object) [],
             ])
             ->andReturn(new Response($psrResponse));
         $this->expectPlaidHeader();
@@ -54,7 +53,7 @@ class AccountsTest extends TestCase
         $obj->getBalance('access_token');
     }
 
-    public function testGetIdentity(): void
+    public function test_get_identity(): void
     {
         $psrResponse = (new PsrResponse(200, [], '{}'));
         Http::shouldReceive('post')
@@ -62,7 +61,7 @@ class AccountsTest extends TestCase
                 'client_id' => 'id',
                 'secret' => 'secret',
                 'access_token' => 'access_token',
-                'options' => (object)[]
+                'options' => (object) [],
             ])
             ->andReturn(new Response($psrResponse));
         $this->expectPlaidHeader();
